@@ -5,18 +5,21 @@
 #include <STE/STE.hpp>
 #include <cmath>
 
-STE::CherryBlossoms::CherryBlossom::CherryBlossom(float x, float rotation, float rotationSpeed, float speed, float direction) :
+STE::CherryBlossoms::CherryBlossom::CherryBlossom(Random* random, float x, float rotation, float rotationSpeed, float speed, float direction) :
     Entity(),
-    rotationSpeed(rotationSpeed),
-    speed(speed),
-    direction(direction),
+    rotationSpeed(rotationSpeed+(random->getFloat(0.0f, rotationSpeed)*1.0f)),
+    speed(speed+(random->getFloat(0.0f, speed)*1.0f)),
+    direction(direction+(random->getFloat(-PI, PI)*0.125f)),
     time(0.0f)
 {
+    sf::Vector2f temp;
     sprite = new sf::Sprite();
     sprite->setTexture(*loadTexture("./Assets/Images/CherryBlossom.png"));
-    sprite->setRotation(rotation);
-    sprite->setOrigin(sf::Vector2f(sprite->getTexture()->getSize())*0.5f);
-    sprite->setPosition(x, 0.0f);
+    temp = sf::Vector2f(sprite->getTexture()->getSize());
+    sprite->setRotation(rotation+random->getFloat(-PI, PI));
+    sprite->setOrigin(temp*0.5f);
+    sprite->setPosition(x, -temp.y*2.0f);
+    sprite->move(sf::Vector2f(random->getFloat(-temp.x, temp.x), random->getFloat(-temp.y, temp.y)));
 }
 
 STE::CherryBlossoms::CherryBlossom::~CherryBlossom()
@@ -44,6 +47,7 @@ STE::CherryBlossoms::CherryBlossoms(float x) :
     x(x)
 {
     time = CHERRY_BLOSSOMS_SPAWN_TIME;
+    random = new Random(*reinterpret_cast<unsigned int*>(&x));
 }
 
 STE::CherryBlossoms::~CherryBlossoms()
@@ -61,7 +65,7 @@ int STE::CherryBlossoms::update(sf::RenderWindow* window, float deltaTime)
     if (time <= 0.0f)
     {
         time = CHERRY_BLOSSOMS_SPAWN_TIME;
-        cherryBlossoms.push_back(new CherryBlossom(x, (x/static_cast<float>(window->getSize().x))*PI*RAD_TO_DEG, CHERRY_BLOSSOMS_ROTATION_SPEED*DEG_TO_RAD, CHERRY_BLOSSOMS_SPEED, PI*1.5f));
+        cherryBlossoms.push_back(new CherryBlossom(random, x, (x/static_cast<float>(window->getSize().x))*PI*RAD_TO_DEG, CHERRY_BLOSSOMS_ROTATION_SPEED*DEG_TO_RAD, CHERRY_BLOSSOMS_SPEED, PI*1.5f));
     }
     for (int i = 0; i != cherryBlossoms.size(); ++i)
     {

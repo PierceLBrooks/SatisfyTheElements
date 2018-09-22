@@ -15,10 +15,14 @@ set(PROJECT_FILES
 	${SRC}/Menu.cpp
 	${SRC}/State.cpp
 	${SRC}/Entity.cpp
+	${SRC}/Random.cpp
+	${SRC}/Button.cpp
 	${INC}/CherryBlossoms.hpp
 	${INC}/Menu.hpp
 	${INC}/State.hpp
 	${INC}/Entity.hpp
+	${INC}/Random.hpp
+	${INC}/Button.hpp
 )
 
 add_executable(SatisfyTheElements ${PROJECT_FILES})

@@ -76,6 +76,7 @@ int main()
         stateNext = handleState(window, deltaTime, state, states);
         if (stateNext < NULL_STATE_ID)
         {
+            window->close();
             continue;
         }
         if (stateNext != NULL_STATE_ID)

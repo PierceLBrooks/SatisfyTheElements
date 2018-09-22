@@ -6,6 +6,7 @@
 
 #include <SFML/Graphics/Sprite.hpp>
 #include <STE/Entity.hpp>
+#include <STE/Random.hpp>
 #include <vector>
 
 namespace STE
@@ -16,7 +17,7 @@ namespace STE
         class CherryBlossom : public Entity
         {
         public:
-            CherryBlossom(float x, float rotation, float rotationSpeed, float speed, float direction);
+            CherryBlossom(Random* random, float x, float rotation, float rotationSpeed, float speed, float direction);
             ~CherryBlossom();
             int update(sf::RenderWindow* window, float deltaTime);
         private:
@@ -30,6 +31,7 @@ namespace STE
         ~CherryBlossoms();
         int update(sf::RenderWindow* window, float deltaTime);
     private:
+        Random* random;
         std::vector<CherryBlossom*> cherryBlossoms;
         float x;
         float time;
