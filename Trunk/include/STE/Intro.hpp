@@ -5,6 +5,7 @@
 #define STE_INTRO_HPP
 
 #include <STE/State.hpp>
+#include <STE/Dialogue.hpp>
 
 namespace STE
 {
@@ -18,6 +19,7 @@ namespace STE
         void didPress(Button* button);
         void didRelease(Button* button);
     private:
+        Dialogue* dialogue;
         Button* quit;
         bool isQuit;
     };

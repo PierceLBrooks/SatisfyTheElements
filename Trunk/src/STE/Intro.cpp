@@ -8,12 +8,14 @@ STE::Intro::Intro(sf::RenderWindow* window) :
     isQuit(false)
 {
     sf::Vector2f region = sf::Vector2f(window->getSize());
+    dialogue = new Dialogue("./Assets/Dialogue/water_dialogue.txt");
     quit = new Button(region*0.125f, "Quit", getFont(), sf::Color::Green, false);
     quit->setListener(this);
 }
 
 STE::Intro::~Intro()
 {
+    delete dialogue;
     delete quit;
 }
 
@@ -23,6 +25,10 @@ int STE::Intro::update(sf::RenderWindow* window, float deltaTime)
     {
         isQuit = false;
         return MENU_STATE_ID;
+    }
+    if (dialogue->update(window, deltaTime) < 0)
+    {
+        return INVALID_STATE_ID;
     }
     quit->update(window, deltaTime);
     return NULL_STATE_ID;

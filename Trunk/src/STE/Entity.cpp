@@ -3,7 +3,7 @@
 
 #include <STE/Entity.hpp>
 
-std::map<std::string, sf::Texture*> STE::Entity::textures = std::map<std::string, sf::Texture*>();
+std::map<std::string, sf::Texture*>* STE::Entity::textures = nullptr;
 
 STE::Entity::Entity()
 {
@@ -18,8 +18,12 @@ STE::Entity::~Entity()
 sf::Texture* STE::Entity::loadTexture(const std::string& path)
 {
     sf::Texture* texture = nullptr;
-    std::map<std::string, sf::Texture*>::iterator iter = textures.find(path);
-    if (iter != textures.end())
+    if (textures == nullptr)
+    {
+        return texture;
+    }
+    std::map<std::string, sf::Texture*>::iterator iter = textures->find(path);
+    if (iter != textures->end())
     {
         texture = iter->second;
     }
@@ -32,16 +36,31 @@ sf::Texture* STE::Entity::loadTexture(const std::string& path)
             texture = nullptr;
             return texture;
         }
-        textures[path] = texture;
+        (*textures)[path] = texture;
     }
     return texture;
 }
 
+void STE::Entity::loadTextures()
+{
+    if (textures != nullptr)
+    {
+        return;
+    }
+    textures = new std::map<std::string, sf::Texture*>();
+}
+
 void STE::Entity::unloadTextures()
 {
-    for (std::map<std::string, sf::Texture*>::iterator iter = textures.begin(); iter != textures.end(); ++iter)
+    if (textures == nullptr)
+    {
+        return;
+    }
+    for (std::map<std::string, sf::Texture*>::iterator iter = textures->begin(); iter != textures->end(); ++iter)
     {
         delete iter->second;
     }
-    textures.clear();
+    textures->clear();
+    delete textures;
+    textures = nullptr;
 }

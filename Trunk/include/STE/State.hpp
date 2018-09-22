@@ -8,7 +8,6 @@
 #include <STE/Entity.hpp>
 #include <STE/Button.hpp>
 #include <SFML/Graphics/Font.hpp>
-#include <SFML/Graphics/RenderWindow.hpp>
 
 namespace STE
 {

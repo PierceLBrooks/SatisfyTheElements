@@ -45,10 +45,15 @@ int main()
     // ^ hey C&D, check that one out lol
     window->create(videoModes[videoModes.size()-1], "Satisfy the Elements", sf::Style::Default);
     window->setFramerateLimit(60);
+    STE::Date::loadDates();
+    STE::Entity::loadTextures();
     states[MENU_STATE_ID] = new STE::Menu(window, 10);
     states[INTRO_STATE_ID] = new STE::Intro(window);
     states[CLIENT_SELECTION_STATE_ID] = new STE::ClientSelection(window);
-    states[DATE_STATE_ID] = new STE::Date(window);
+    states[FIRE_STATE_ID] = new STE::Date(window, FIRE_STATE_ID);
+    states[WATER_STATE_ID] = new STE::Date(window, WATER_STATE_ID);
+    states[EARTH_STATE_ID] = new STE::Date(window, EARTH_STATE_ID);
+    states[AIR_STATE_ID] = new STE::Date(window, AIR_STATE_ID);
     clock->restart();
     if (!font->loadFromFile("./Assets/Fonts/Arial/arial.ttf"))
     {
@@ -97,8 +102,11 @@ int main()
         window->draw(*fps);
         window->display();
     }
-    delete window;
     delete clock;
+    delete font;
+    delete fps;
+    delete window;
+    STE::Date::unloadDates();
     STE::Entity::unloadTextures();
     for (std::map<int, STE::State*>::iterator iter = states.begin(); iter != states.end(); ++iter)
     {

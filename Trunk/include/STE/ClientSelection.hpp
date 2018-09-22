@@ -14,7 +14,15 @@ namespace STE
         ClientSelection(sf::RenderWindow* window);
         ~ClientSelection();
         int update(sf::RenderWindow* window, float deltaTime);
+    protected:
+        void didPress(Button* button);
+        void didRelease(Button* button);
     private:
+        bool isQuit;
+        bool isFire;
+        bool isWater;
+        bool isEarth;
+        bool isAir;
         Button* quit;
         Button* fire;
         Button* water;

@@ -1,0 +1,23 @@
+smile, happy, anger, grossed_out, blushing, surprise, sad
+#w
+#thisisthequestion
+#question
+#answer1 | angry | -x | response
+#answer2 | sad | -y |
+#answer3 | smile | +z |
+#answer4 | | |
+
+w
+owiejf;eoisjfwe;oifj | blushing
+oiwejf;oaewifjwo;aeifj
+oa;weijf;woeaijfowei | surprise
+aw;eifj;woaef?
+question
+
+locations:
+water - park
+fire - mall cafeteria
+earth - coffee shop
+air - concert
+
+starting happiness - 5

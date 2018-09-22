@@ -1,0 +1,26 @@
+w
+Hello ... | blushing
+So glad we could finally meet! | smile
+I love this park, and the water's so peaceful.
+Have you been here before? 
+question
+Once, in college, when someone dared me to pee in every lake in the county in one night. | angry | -5 | I actually think I should just go.
+Yeah! My grandpa used to take me here when I was little. He loved fishing here. | smile | +1 | 
+No, but I'm glad my first time seeing this beautiful place could be with you. | blushing | +2 | Me, too!
+
+I first came here when I was young. | happy
+My sister and I used to live a block down, and we'd come here to play.
+Do you have any siblings? | smile
+question
+Two brothers and one sister. They've actually started a band, "The Incest Wagon" | grossed_out | -3 | I wish I didn't know that.
+My mother ate my sister when she was young. | surprise | +0 | No way! I would have had a younger brother if he hadn't been eaten by my dad. |
+!!!grossed_out | Right out of the womb. Never seen anything like it.
+
+Well, anyhow, I've been reading the "Sisterhood of the Travelling Pants" books. Ever heard of them?
+I've really enjoyed the discussion domestic violence and the underlying themes of disease spreading through unwashed fabrics.
+question
+No, haven't heard of them. The only book I've ever read is the original transcription of Ulysses, and let me just say, I'm better than you. | anger | -4 | I've never been so insulted in all my life. That doesn't even sounds like a real book! I think we're done here.
+Yes! I love those books! Uh ... I loved the part when ... uh ... when the girl wore the pants!! | smile | +1 | I, also, loved the part where the girl wore the pants. That one was my favorite.
+I also love socioeconomic commentary novels. | happy | +3 | How wonderful for you!
+
+

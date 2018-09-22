@@ -18,9 +18,10 @@ namespace STE
         ~Entity();
         virtual int update(sf::RenderWindow* window, float deltaTime) = 0;
         static sf::Texture* loadTexture(const std::string& path);
+        static void loadTextures();
         static void unloadTextures();
     private:
-        static std::map<std::string, sf::Texture*> textures;
+        static std::map<std::string, sf::Texture*>* textures;
     };
 }
 
