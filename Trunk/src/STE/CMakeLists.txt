@@ -9,11 +9,16 @@ set(SRC ${PROJECT_SOURCE_DIR}/src/STE)
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
 set(PROJECT_FILES
+	${INC}/STE.hpp
 	${SRC}/main.cpp
 	${SRC}/CherryBlossoms.cpp
 	${SRC}/Menu.cpp
+	${SRC}/State.cpp
+	${SRC}/Entity.cpp
 	${INC}/CherryBlossoms.hpp
 	${INC}/Menu.hpp
+	${INC}/State.hpp
+	${INC}/Entity.hpp
 )
 
 add_executable(SatisfyTheElements ${PROJECT_FILES})
