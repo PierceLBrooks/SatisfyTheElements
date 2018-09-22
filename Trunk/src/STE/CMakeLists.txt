@@ -17,12 +17,18 @@ set(PROJECT_FILES
 	${SRC}/Entity.cpp
 	${SRC}/Random.cpp
 	${SRC}/Button.cpp
+	${SRC}/Date.cpp
+	${SRC}/Intro.cpp
+	${SRC}/ClientSelection.cpp
 	${INC}/CherryBlossoms.hpp
 	${INC}/Menu.hpp
 	${INC}/State.hpp
 	${INC}/Entity.hpp
 	${INC}/Random.hpp
 	${INC}/Button.hpp
+	${INC}/Date.hpp
+	${INC}/Intro.hpp
+	${INC}/ClientSelection.hpp
 )
 
 add_executable(SatisfyTheElements ${PROJECT_FILES})

@@ -5,27 +5,26 @@
 #define STE_MENU_HPP
 
 #include <STE/State.hpp>
-#include <STE/Button.hpp>
 #include <STE/CherryBlossoms.hpp>
-#include <SFML/Graphics/Font.hpp>
 #include <vector>
 
 namespace STE
 {
-    class Menu : public State, public Button::Listener
+    class Menu : public State
     {
     public:
         Menu(sf::RenderWindow* window, unsigned int cherryBlossomsSegmentation);
         ~Menu();
         int update(sf::RenderWindow* window, float deltaTime);
-    private:
-        std::vector<CherryBlossoms*> cherryBlossoms;
-        sf::Font* font;
-        Button* quit;
-        bool isQuit;
     protected:
         void didPress(Button* button);
         void didRelease(Button* button);
+    private:
+        std::vector<CherryBlossoms*> cherryBlossoms;
+        Button* quit;
+        Button* start;
+        bool isQuit;
+        bool isStart;
     };
 }
 

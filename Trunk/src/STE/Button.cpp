@@ -15,11 +15,12 @@ STE::Button::Listener::~Listener()
 
 }
 
-STE::Button::Button(const sf::Vector2f& region, const std::string& content, sf::Font* font, const sf::Color& color) :
+STE::Button::Button(const sf::Vector2f& region, const std::string& content, sf::Font* font, const sf::Color& color, bool center) :
     Entity(),
     region(region),
     isPressed(false),
-    listener(nullptr)
+    listener(nullptr),
+    center(center)
 {
     form = new sf::RectangleShape();
     form->setSize(region);
@@ -99,6 +100,12 @@ void STE::Button::reset()
     else
     {
         form->setFillColor(BUTTON_PRESSED_COLOR);
+    }
+
+    if (!center)
+    {
+        form->move(form->getOrigin());
+        label->move(form->getOrigin());
     }
 }
 

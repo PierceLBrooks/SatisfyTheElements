@@ -5,6 +5,9 @@
 #include <STE/STE.hpp>
 #include <STE/State.hpp>
 #include <STE/Menu.hpp>
+#include <STE/Intro.hpp>
+#include <STE/ClientSelection.hpp>
+#include <STE/Date.hpp>
 #include <SFML/System/Clock.hpp>
 #include <SFML/Window/Event.hpp>
 #include <SFML/Graphics/Font.hpp>
@@ -36,24 +39,28 @@ int main()
     std::map<int, STE::State*> states;
     sf::Clock* clock = new sf::Clock();
     sf::Font* font = new sf::Font();
-    sf::Text* text = new sf::Text();
+    sf::Text* fps = new sf::Text();
     sf::RenderWindow* window = new sf::RenderWindow();
     auto videoModes = sf::VideoMode::getFullscreenModes();
     // ^ hey C&D, check that one out lol
     window->create(videoModes[videoModes.size()-1], "Satisfy the Elements", sf::Style::Default);
     window->setFramerateLimit(60);
-    states[1] = new STE::Menu(window, 10);
+    states[MENU_STATE_ID] = new STE::Menu(window, 10);
+    states[INTRO_STATE_ID] = new STE::Intro(window);
+    states[CLIENT_SELECTION_STATE_ID] = new STE::ClientSelection(window);
+    states[DATE_STATE_ID] = new STE::Date(window);
     clock->restart();
     if (!font->loadFromFile("./Assets/Fonts/Arial/arial.ttf"))
     {
         delete clock;
         delete font;
-        delete text;
+        delete fps;
         delete window;
         return -1;
     }
-    text->setFont(*font);
-    text->setColor(sf::Color::Green);
+    fps->setFont(*font);
+    fps->setColor(sf::Color::Green);
+    fps->setString(sf::String("FPS"));
     while (window->isOpen())
     {
         sf::Event event;
@@ -84,12 +91,19 @@ int main()
             statePrevious = state;
             state = stateNext;
         }
-        text->setString(sf::String(std::to_string(static_cast<int>(1.0f/deltaTime))));
-        window->draw(*text);
+        fps->setString(sf::String(std::to_string(static_cast<int>(1.0f/deltaTime))));
+        fps->setPosition(static_cast<float>(window->getSize().x), 0.0f);
+        fps->move((fps->getPosition()-fps->findCharacterPos(fps->getString().getSize()-1))*2.0f);
+        window->draw(*fps);
         window->display();
     }
     delete window;
     delete clock;
     STE::Entity::unloadTextures();
+    for (std::map<int, STE::State*>::iterator iter = states.begin(); iter != states.end(); ++iter)
+    {
+        delete iter->second;
+    }
+    states.clear();
     return 0;
 }

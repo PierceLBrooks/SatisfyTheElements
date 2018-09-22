@@ -24,7 +24,7 @@ namespace STE
             virtual void didPress(Button* button) = 0;
             virtual void didRelease(Button* button) = 0;
         };
-        Button(const sf::Vector2f& region, const std::string& content, sf::Font* font, const sf::Color& color);
+        Button(const sf::Vector2f& region, const std::string& content, sf::Font* font, const sf::Color& color, bool center = true);
         ~Button();
         int update(sf::RenderWindow* window, float deltaTime);
         bool getIsPressed() const;
@@ -34,6 +34,7 @@ namespace STE
         void press();
         void release();
         bool isPressed;
+        bool center;
         sf::RectangleShape* form;
         sf::Text* label;
         sf::Vector2f region;
