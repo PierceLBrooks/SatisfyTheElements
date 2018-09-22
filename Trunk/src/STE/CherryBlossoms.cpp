@@ -7,7 +7,7 @@
 
 STE::CherryBlossoms::CherryBlossom::CherryBlossom(Random* random, float x, float rotation, float rotationSpeed, float speed, float direction) :
     Entity(),
-    rotationSpeed(rotationSpeed+(random->getFloat(0.0f, rotationSpeed)*1.0f)),
+    rotationSpeed(rotationSpeed+(random->getFloat(0.0f, rotationSpeed)*1.0f*RAD_TO_DEG)),
     speed(speed+(random->getFloat(0.0f, speed)*1.0f)),
     direction(direction+(random->getFloat(-PI, PI)*0.125f)),
     time(0.0f)
@@ -16,7 +16,7 @@ STE::CherryBlossoms::CherryBlossom::CherryBlossom(Random* random, float x, float
     sprite = new sf::Sprite();
     sprite->setTexture(*loadTexture("./Assets/Images/CherryBlossoms.png"));
     temp = sf::Vector2f(sprite->getTexture()->getSize());
-    sprite->setRotation(rotation+random->getFloat(-PI, PI));
+    sprite->setRotation(rotation+(random->getFloat(-PI, PI)*RAD_TO_DEG));
     sprite->setOrigin(temp*0.5f);
     sprite->setPosition(x, -temp.y*2.0f);
     sprite->move(sf::Vector2f(random->getFloat(-temp.x, temp.x), random->getFloat(-temp.y, temp.y)));

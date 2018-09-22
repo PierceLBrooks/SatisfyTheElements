@@ -7,6 +7,7 @@
 #include <STE/Button.hpp>
 #include <fstream>
 #include <vector>
+#include <string>
 
 namespace STE
 {
@@ -17,6 +18,7 @@ namespace STE
         ~Dialogue();
         int update(sf::RenderWindow* window, float deltaTime);
     private:
+        std::vector<std::string> lines;
         std::vector<Button*> options;
         std::ifstream* file;
     };

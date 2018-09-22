@@ -32,11 +32,14 @@ int handleState(sf::RenderWindow* window, float deltaTime, int state, std::map<i
 
 int main()
 {
+    unsigned int shadowFrames;
+    float shadowFrameTime;
     float deltaTime;
     int state = MENU_STATE_ID;
     int stateNext = INVALID_STATE_ID;
     int statePrevious = INVALID_STATE_ID;
     std::map<int, STE::State*> states;
+    sf::Event event;
     sf::Clock* clock = new sf::Clock();
     sf::Font* font = new sf::Font();
     sf::Text* fps = new sf::Text();
@@ -44,7 +47,7 @@ int main()
     auto videoModes = sf::VideoMode::getFullscreenModes();
     // ^ hey C&D, check that one out lol
     window->create(videoModes[videoModes.size()-1], "Satisfy the Elements", sf::Style::Default);
-    window->setFramerateLimit(60);
+    window->setFramerateLimit(FPS_LIMIT);
     STE::Date::loadDates();
     STE::Entity::loadTextures();
     states[MENU_STATE_ID] = new STE::Menu(window, 10);
@@ -64,11 +67,10 @@ int main()
         return -1;
     }
     fps->setFont(*font);
-    fps->setColor(sf::Color::Green);
+    fps->setFillColor(DEFAULT_TEXT_COLOR);
     fps->setString(sf::String("FPS"));
     while (window->isOpen())
     {
-        sf::Event event;
         while (window->pollEvent(event))
         {
             switch (event.type)
@@ -85,17 +87,34 @@ int main()
         }
         window->clear(sf::Color::Black);
         deltaTime = clock->restart().asSeconds();
-        stateNext = handleState(window, deltaTime, state, states);
-        if (stateNext < NULL_STATE_ID)
+        if (deltaTime > MAX_DELTA_TIME)
         {
-            window->close();
-            continue;
+            shadowFrames = 1;
+            do
+            {
+                ++shadowFrames;
+                shadowFrameTime = deltaTime/static_cast<float>(shadowFrames);
+            } while (shadowFrameTime > MAX_DELTA_TIME);
+            for (unsigned int i = 0; i != shadowFrames; ++i)
+            {
+                handleState(window, shadowFrameTime, state, states);
+            }
         }
-        if (stateNext != NULL_STATE_ID)
+        else
         {
-            statePrevious = state;
-            state = stateNext;
+            stateNext = handleState(window, deltaTime, state, states);
+            if (stateNext < NULL_STATE_ID)
+            {
+                window->close();
+                continue;
+            }
+            if (stateNext != NULL_STATE_ID)
+            {
+                statePrevious = state;
+                state = stateNext;
+            }
         }
+
         fps->setString(sf::String(std::to_string(static_cast<int>(1.0f/deltaTime))));
         fps->setPosition(static_cast<float>(window->getSize().x), 0.0f);
         fps->move((fps->getPosition()-fps->findCharacterPos(fps->getString().getSize()-1))*2.0f);

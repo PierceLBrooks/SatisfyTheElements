@@ -6,6 +6,7 @@
 
 STE::Dialogue::Dialogue(const std::string& path)
 {
+    std::string line;
     std::cout << path << std::endl;
     file = new std::ifstream();
     file->open(path);
@@ -14,6 +15,14 @@ STE::Dialogue::Dialogue(const std::string& path)
         std::cout << "Invalid path!" << std::endl;
         delete file;
         file = nullptr;
+    }
+    else
+    {
+        while (std::getline(*file, line).good())
+        {
+            std::cout << line << std::endl;
+            lines.push_back(line);
+        }
     }
 }
 
@@ -25,6 +34,7 @@ STE::Dialogue::~Dialogue()
         delete options[i];
     }
     options.clear();
+    lines.clear();
 }
 
 int STE::Dialogue::update(sf::RenderWindow* window, float deltaTime)

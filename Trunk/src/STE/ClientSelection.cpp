@@ -12,15 +12,15 @@ STE::ClientSelection::ClientSelection(sf::RenderWindow* window) :
     isAir(false)
 {
     sf::Vector2f region = sf::Vector2f(window->getSize());
-    quit = new Button(region*0.125f, "Quit", getFont(), sf::Color::Green, false);
+    quit = new Button(region*0.125f, "Quit", getFont(), DEFAULT_TEXT_COLOR, false);
     quit->setListener(this);
-    fire = new Button(region*0.125f, "Fire", getFont(), sf::Color::Green, false);
+    fire = new Button(region*0.125f, "Fire", getFont(), DEFAULT_TEXT_COLOR, false);
     fire->setListener(this);
-    water = new Button(region*0.125f, "Water", getFont(), sf::Color::Green, false);
+    water = new Button(region*0.125f, "Water", getFont(), DEFAULT_TEXT_COLOR, false);
     water->setListener(this);
-    earth = new Button(region*0.125f, "Earth", getFont(), sf::Color::Green, false);
+    earth = new Button(region*0.125f, "Earth", getFont(), DEFAULT_TEXT_COLOR, false);
     earth->setListener(this);
-    air = new Button(region*0.125f, "Air", getFont(), sf::Color::Green, false);
+    air = new Button(region*0.125f, "Air", getFont(), DEFAULT_TEXT_COLOR, false);
     air->setListener(this);
 }
 
