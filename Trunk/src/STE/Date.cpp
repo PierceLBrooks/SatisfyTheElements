@@ -21,7 +21,7 @@ STE::Date::Date(sf::RenderWindow* window, int type) :
     {
         dialogue = new Dialogue(window, "./Assets/Dialogue/"+date, this);
     }
-    quit = new Button(region*0.125f, "Quit", getFont(), DEFAULT_TEXT_COLOR, false);
+    quit = new Button(region*BUTTON_SCALE, "Quit", getFont(), DEFAULT_TEXT_COLOR, false);
     quit->setListener(this);
 }
 

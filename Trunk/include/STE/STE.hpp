@@ -8,6 +8,7 @@
 
 #define FPS_LIMIT (60)
 #define MAX_DELTA_TIME (0.125f)
+#define BUTTON_SCALE (0.125f)
 
 #define PI (22.0f/7.0f)
 #define DEG_TO_RAD (180.0f/(22.0f/7.0f))
@@ -30,7 +31,7 @@
 
 #define BUTTON_TRANSPARENCY 192
 #define BUTTON_PRESSED_COLOR (sf::Color(64, 64, 64, BUTTON_TRANSPARENCY))
-#define BUTTON_RELEASED_COLOR (sf::Color(192, 192, 192, BUTTON_TRANSPARENCY))
+#define BUTTON_RELEASED_COLOR (sf::Color(196, 196, 196, BUTTON_TRANSPARENCY))
 
 #define DEFAULT_TEXT_COLOR (sf::Color::Green)
 

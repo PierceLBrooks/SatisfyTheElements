@@ -55,6 +55,7 @@ int main()
     int statePrevious = INVALID_STATE_ID;
     std::map<int, STE::State*> states;
     sf::Event event;
+    sf::Color background = sf::Color(152, 152, 152);
     sf::Clock* clock = new sf::Clock();
     sf::Font* font = new sf::Font();
     sf::Text* fps = new sf::Text();
@@ -99,7 +100,7 @@ int main()
             window->close();
             continue;
         }
-        window->clear(sf::Color::Black);
+        window->clear(background);
         deltaTime = clock->restart().asSeconds();
         if (deltaTime > MAX_DELTA_TIME)
         {

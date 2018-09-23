@@ -57,7 +57,7 @@ namespace STE
             std::vector<Button*> options;
         };
         void parse(const sf::Vector2f& region, State* state);
-        void select(Button* option);
+        bool select(Button* option);
         void show(const std::vector<Statement*>& statements);
         void show(Statement* statement);
         void ask(Question* question);

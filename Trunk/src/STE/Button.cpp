@@ -108,7 +108,7 @@ void STE::Button::reset()
     label->setPosition(getPosition());
     label->setRotation(getRotation());
     label->setOrigin(sf::Vector2f(bounds.width, bounds.height));
-    label->setScale(sf::Vector2f(region.x/bounds.width, region.y/bounds.height)*0.5f);
+    label->setScale(sf::Vector2f((region.x/bounds.width)*1.5f, region.y/bounds.height)*0.5f);
     label->move(label->getGlobalBounds().width*0.5f, 0.0f);
 
     if (!isPressed)

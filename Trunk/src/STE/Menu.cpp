@@ -16,14 +16,14 @@ STE::Menu::Menu(sf::RenderWindow* window, unsigned int cherryBlossomsSegmentatio
         cherryBlossoms.push_back(new CherryBlossoms(offset+(segmentation*static_cast<float>(i))));
     }
     segmentation *= 0.5f;
-    quit = new Button(region*0.125f, "Quit", getFont(), DEFAULT_TEXT_COLOR);
+    quit = new Button(region*BUTTON_SCALE, "Quit", getFont(), DEFAULT_TEXT_COLOR);
     quit->setListener(this);
     quit->setPosition(region*0.5f);
-    quit->move(0.0f, (region.y*0.125f)+segmentation);
-    start = new Button(region*0.125f, "Start", getFont(), DEFAULT_TEXT_COLOR);
+    quit->move(0.0f, (region.y*BUTTON_SCALE)+segmentation);
+    start = new Button(region*BUTTON_SCALE, "Start", getFont(), DEFAULT_TEXT_COLOR);
     start->setListener(this);
     start->setPosition(region*0.5f);
-    start->move(0.0f, ((region.y*0.125f)+segmentation)*-1.0f);
+    start->move(0.0f, ((region.y*BUTTON_SCALE)+segmentation)*-1.0f);
 }
 
 STE::Menu::~Menu()

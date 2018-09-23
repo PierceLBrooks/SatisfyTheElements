@@ -394,7 +394,7 @@ void STE::Dialogue::parse(const sf::Vector2f& region, State* state)
                     }
                 }
             }
-            button = new Button(sf::Vector2f(region.x, region.y*0.125f), option, state->getFont(), DEFAULT_TEXT_COLOR);
+            button = new Button(sf::Vector2f(region.x, region.y*BUTTON_SCALE), option, state->getFont(), DEFAULT_TEXT_COLOR);
             button->setAction(new Button::Action([=](Button* actor, bool isPressed){
                                                  if (button != actor)
                                                  {
@@ -408,6 +408,8 @@ void STE::Dialogue::parse(const sf::Vector2f& region, State* state)
                                                  this->select(actor);
                                                  this->score += score;
                                                  }));
+            button->setPosition(region.x*0.5f, region.y*BUTTON_SCALE*2.5f);
+            button->move(0.0f, region.y*BUTTON_SCALE*static_cast<float>(question->getOptions().size())*1.5f);
             question->addOption(button);
             if (responses.find(button) == responses.end())
             {
@@ -432,11 +434,11 @@ void STE::Dialogue::parse(const sf::Vector2f& region, State* state)
     //std::cout << "END PARSER" << std::endl;
 }
 
-void STE::Dialogue::select(Button* option)
+bool STE::Dialogue::select(Button* option)
 {
     if (option == nullptr)
     {
-        return;
+        return false;
     }
     for (unsigned int i = 0; i != options.size(); ++i)
     {
@@ -448,9 +450,10 @@ void STE::Dialogue::select(Button* option)
                 options.clear();
                 show(iter->second);
             }
-            break;
+            return true;
         }
     }
+    return false;
 }
 
 void STE::Dialogue::show(const std::vector<Statement*>& statements)

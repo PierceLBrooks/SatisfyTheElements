@@ -9,7 +9,7 @@ STE::Intro::Intro(sf::RenderWindow* window) :
 {
     sf::Vector2f region = sf::Vector2f(window->getSize());
     dialogue = new Dialogue(window, "./Assets/Dialogue/water_dialogue.txt", this);
-    quit = new Button(region*0.125f, "Quit", getFont(), DEFAULT_TEXT_COLOR, false);
+    quit = new Button(region*BUTTON_SCALE, "Quit", getFont(), DEFAULT_TEXT_COLOR, false);
     quit->setListener(this);
 }
 
