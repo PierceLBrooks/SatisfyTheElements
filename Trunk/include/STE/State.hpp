@@ -22,7 +22,7 @@ namespace STE
         bool getIsReleased() const;
         virtual int update(sf::RenderWindow* window, float deltaTime);
         virtual void start();
-        void mouse();
+        void mouse(sf::RenderWindow* window);
     protected:
         virtual void didPress(Button* button);
         virtual void didRelease(Button* button);

@@ -19,8 +19,9 @@ namespace STE
         Dialogue(sf::RenderWindow* window, const std::string& path, State* state);
         ~Dialogue();
         bool show();
+        void reset();
+        void finish();
         int update(sf::RenderWindow* window, float deltaTime);
-        void setScore(int score);
         int getScore() const;
         static int getEmotion(const std::string& identifier);
         static std::string getEmotionPath(int emotion);

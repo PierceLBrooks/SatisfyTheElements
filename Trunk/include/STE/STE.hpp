@@ -6,6 +6,8 @@
 #ifndef STE_HPP
 #define STE_HPP
 
+#define DEFAULT_SCORE (5)
+
 #define FPS_LIMIT (60)
 #define MAX_DELTA_TIME (0.125f)
 #define BUTTON_SCALE (0.125f)
@@ -34,6 +36,8 @@
 #define BUTTON_PRESSED_COLOR (sf::Color(64, 64, 64, BUTTON_TRANSPARENCY))
 #define BUTTON_RELEASED_COLOR (sf::Color(196, 196, 196, BUTTON_TRANSPARENCY))
 
-#define DEFAULT_TEXT_COLOR (sf::Color::Black)
+#define DEFAULT_TEXT_COLOR (sf::Color::White)
+#define TEXT_OUTLINE_THICKNESS (0.125f)
+#define MAX_LINE_LENGTH (60)
 
 #endif // STE_HPP

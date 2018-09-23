@@ -9,7 +9,8 @@ std::map<int, std::string>* STE::Date::dates = nullptr;
 
 STE::Date::Date(sf::RenderWindow* window, int type) :
     State(type),
-    isQuit(false)
+    isQuit(false),
+    isDone(false)
 {
     sf::Vector2f region = sf::Vector2f(window->getSize());
     std::string date = getDate(type);
@@ -34,24 +35,36 @@ STE::Date::~Date()
 
 int STE::Date::update(sf::RenderWindow* window, float deltaTime)
 {
-    if (isQuit)
-    {
-        isQuit = false;
-        return MENU_STATE_ID;
-    }
     if (dialogue == nullptr)
     {
         return INVALID_STATE_ID;
+    }
+    if ((isQuit) && (!isDone))
+    {
+        dialogue->reset();
+        isQuit = false;
+        return MENU_STATE_ID;
     }
     if (dialogue->update(window, deltaTime) < 0)
     {
         return INVALID_STATE_ID;
     }
+    if (isDone)
+    {
+        mouse(window);
+        if (getIsReleased())
+        {
+            isDone = false;
+            dialogue->finish();
+            return RESULT_STATE_ID;
+        }
+        return NULL_STATE_ID;
+    }
     int buttons = 0;
     buttons |= quit->update(window, deltaTime);
     if (buttons == 0)
     {
-        mouse();
+        mouse(window);
         if (getIsReleased())
         {
             if (!dialogue->show())
@@ -64,16 +77,16 @@ int STE::Date::update(sf::RenderWindow* window, float deltaTime)
                 {
                     Result::setIsWin(false);
                 }
-                dialogue->setScore(0);
-                return RESULT_STATE_ID;
+                dialogue->reset();
+                isDone = true;
             }
             else
             {
                 if (dialogue->getScore() <= 0)
                 {
                     Result::setIsWin(false);
-                    dialogue->setScore(0);
-                    return RESULT_STATE_ID;
+                    dialogue->reset();
+                    isDone = true;
                 }
             }
         }

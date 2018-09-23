@@ -31,6 +31,8 @@ STE::Button::Button(const sf::Vector2f& region, const std::string& content, sf::
     label->setFont(*font);
     label->setString(sf::String(content));
     label->setFillColor(color);
+    label->setOutlineColor(sf::Color(255-label->getFillColor().r, 255-label->getFillColor().g, 255-label->getFillColor().b, label->getFillColor().a));
+    label->setOutlineThickness(static_cast<float>(label->getCharacterSize())*TEXT_OUTLINE_THICKNESS*0.5f);
     bounds = label->getLocalBounds();
 }
 

@@ -24,6 +24,7 @@ namespace STE
     private:
         static std::map<int, std::string>* dates;
         bool isQuit;
+        bool isDone;
         Dialogue* dialogue;
         Button* quit;
     };

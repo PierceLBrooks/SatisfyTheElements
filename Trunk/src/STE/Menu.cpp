@@ -39,7 +39,6 @@ STE::Menu::~Menu()
 
 int STE::Menu::update(sf::RenderWindow* window, float deltaTime)
 {
-    mouse();
     if (isQuit)
     {
         isQuit = false;

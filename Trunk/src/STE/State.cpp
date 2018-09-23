@@ -41,7 +41,7 @@ bool STE::State::getIsReleased() const
 
 int STE::State::update(sf::RenderWindow* window, float deltaTime)
 {
-    mouse();
+    mouse(window);
 }
 
 void STE::State::start()
@@ -49,11 +49,15 @@ void STE::State::start()
 
 }
 
-void STE::State::mouse()
+void STE::State::mouse(sf::RenderWindow* window)
 {
     if (isReleased)
     {
         isReleased = false;
+    }
+    if (!sf::FloatRect(window->getView().getCenter()-(window->getView().getSize()*0.5f), window->getView().getSize()).contains(sf::Vector2f(sf::Mouse::getPosition(*window))))
+    {
+        return;
     }
     if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
     {

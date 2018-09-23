@@ -21,14 +21,15 @@ STE::Intro::~Intro()
 
 int STE::Intro::update(sf::RenderWindow* window, float deltaTime)
 {
-    if (isQuit)
-    {
-        isQuit = false;
-        return MENU_STATE_ID;
-    }
     if (dialogue == nullptr)
     {
         return INVALID_STATE_ID;
+    }
+    if (isQuit)
+    {
+        dialogue->reset();
+        isQuit = false;
+        return MENU_STATE_ID;
     }
     if (dialogue->update(window, deltaTime) < 0)
     {
@@ -38,7 +39,7 @@ int STE::Intro::update(sf::RenderWindow* window, float deltaTime)
     buttons |= quit->update(window, deltaTime);
     if (buttons == 0)
     {
-        mouse();
+        mouse(window);
         if (getIsReleased())
         {
             if (!dialogue->show())

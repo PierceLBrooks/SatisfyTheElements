@@ -92,7 +92,7 @@ void STE::Dialogue::Question::addOption(Button* option)
 }
 
 STE::Dialogue::Dialogue(sf::RenderWindow* window, const std::string& path, State* state) :
-    score(1),
+    score(DEFAULT_SCORE),
     elementIndex(0),
     characterEmotion(nullptr)
 {
@@ -125,6 +125,8 @@ STE::Dialogue::Dialogue(sf::RenderWindow* window, const std::string& path, State
     speech = new sf::Text();
     speech->setFont(*state->getFont());
     speech->setFillColor(DEFAULT_TEXT_COLOR);
+    speech->setOutlineColor(sf::Color(255-speech->getFillColor().r, 255-speech->getFillColor().g, 255-speech->getFillColor().b, speech->getFillColor().a));
+    speech->setOutlineThickness(static_cast<float>(speech->getCharacterSize())*TEXT_OUTLINE_THICKNESS*0.5f);
     speech->setPosition(region.x*0.5f, region.y);
     speech->setString(sf::String(""));
     speech->setCharacterSize(static_cast<int>(static_cast<float>(speech->getCharacterSize())*0.75f));
@@ -184,6 +186,23 @@ STE::Dialogue::~Dialogue()
     delete speech;
 }
 
+void STE::Dialogue::reset()
+{
+    score = DEFAULT_SCORE;
+    elementIndex = 0;
+}
+
+void STE::Dialogue::finish()
+{
+    delete characterEmotion;
+    characterEmotion = nullptr;
+    if (speech == nullptr)
+    {
+        return;
+    }
+    speech->setString(sf::String(""));
+}
+
 int STE::Dialogue::update(sf::RenderWindow* window, float deltaTime)
 {
     sf::Vector2f region = sf::Vector2f(window->getSize());
@@ -215,11 +234,6 @@ int STE::Dialogue::update(sf::RenderWindow* window, float deltaTime)
         }
     }
     return 0;
-}
-
-void STE::Dialogue::setScore(int score)
-{
-    this->score = score;
 }
 
 int STE::Dialogue::getScore() const
@@ -559,7 +573,50 @@ void STE::Dialogue::parse(const sf::Vector2f& region, State* state)
                     line = line.substr(0, i);
                 }
             }
-            elements.push_back(new Statement(character, line, emotion));
+            if (line.size() > MAX_LINE_LENGTH)
+            {
+                std::vector<std::string> split;
+                unsigned int splitOffset = 0;
+                unsigned int splitCount = 0;
+                for (unsigned int i = 0; i < line.size(); ++i)
+                {
+                    ++splitCount;
+                    if (splitCount > MAX_LINE_LENGTH)
+                    {
+                        if ((line[i] == '.') || (line[i] == '!') || (line[i] == '?'))
+                        {
+                            split.push_back(line.substr(splitOffset, splitCount+1));
+                            ++i;
+                            splitOffset = i;
+                            splitCount = 0;
+                        }
+                    }
+                }
+                if (splitCount > 0)
+                {
+                    split.push_back(line.substr(splitOffset));
+                }
+                for (unsigned int i = 0; i != split.size(); ++i)
+                {
+                    if (split[i].empty())
+                    {
+                        continue;
+                    }
+                    for (unsigned int j = 0; j != split[i].size(); ++j)
+                    {
+                        if (split[i][j] != ' ')
+                        {
+                            elements.push_back(new Statement(character, split[i], emotion));
+                            break;
+                        }
+                    }
+                }
+                split.clear();
+            }
+            else
+            {
+                elements.push_back(new Statement(character, line, emotion));
+            }
         }
         emotion = -1;
     }
