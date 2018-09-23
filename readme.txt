@@ -1,6 +1,6 @@
 
 https://github.com/PierceLBrooks/SatisfyTheElements
-
+https://www.youtube.com/watch?v=QX8mZ-hgDkA
 
 This project was created over a period of 48 hours for the Shawnee State University (http://shawnee.edu/) game development club (_GDoS) Fall semester jam of 2018.
 Progress was streamed on Twitch at the following URL: https://www.twitch.tv/piercelbrooks
