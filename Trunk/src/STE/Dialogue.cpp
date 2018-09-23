@@ -41,7 +41,7 @@ STE::Dialogue::Statement::Statement(int character, const std::string& content, i
     }
     else
     {
-        std::cout << "New statement: " << content << "(" << character << ", " << emotion << ")" << std::endl;
+        std::cout << "New statement: " << content << " (" << character << ", " << emotion << ")" << std::endl;
     }
 }
 
@@ -90,7 +90,8 @@ void STE::Dialogue::Question::addOption(Button* option)
 }
 
 STE::Dialogue::Dialogue(sf::RenderWindow* window, const std::string& path, State* state) :
-    score(0)
+    score(0),
+    elementIndex(0)
 {
     sf::Vector2f region = sf::Vector2f(window->getSize());
     std::string line;
@@ -113,6 +114,12 @@ STE::Dialogue::Dialogue(sf::RenderWindow* window, const std::string& path, State
     }
     delete file;
     file = nullptr;
+    speech = new sf::Text();
+    speech->setFont(*state->getFont());
+    speech->setFillColor(DEFAULT_TEXT_COLOR);
+    speech->setPosition(region.x*0.5f, region.y);
+    speech->setString(sf::String(""));
+    speech->setCharacterSize(static_cast<int>(static_cast<float>(speech->getCharacterSize())*0.75f));
 }
 
 STE::Dialogue::~Dialogue()
@@ -135,10 +142,19 @@ STE::Dialogue::~Dialogue()
     responses.clear();
     options.clear();
     lines.clear();
+    statements.clear();
+    delete speech;
 }
 
 int STE::Dialogue::update(sf::RenderWindow* window, float deltaTime)
 {
+    if (speech != nullptr)
+    {
+        if (speech->getString().getSize() != 0)
+        {
+            window->draw(*speech);
+        }
+    }
     for (unsigned int i = 0; i != options.size(); ++i)
     {
         if (options[i]->update(window, deltaTime) < 0)
@@ -470,6 +486,14 @@ void STE::Dialogue::show(Statement* statement)
     {
         return;
     }
+    if (speech == nullptr)
+    {
+        return;
+    }
+    sf::FloatRect region;
+    speech->setString(sf::String(statement->getContent()));
+    region = speech->getGlobalBounds();
+    speech->setOrigin(sf::Vector2f(region.width*0.5f, region.height*2.0f));
     std::cout << statement->getContent() << std::endl;
 }
 
@@ -481,10 +505,9 @@ bool STE::Dialogue::show()
     }
     if (statements.empty())
     {
-        if (!elements.empty())
+        if (elementIndex < elements.size())
         {
-            Element* element = *(elements.begin());
-            elements.erase(elements.begin());
+            Element* element = elements[elementIndex];
             if (element != nullptr)
             {
                 if (element->getType())
@@ -496,9 +519,11 @@ bool STE::Dialogue::show()
                     ask(static_cast<Question*>(element));
                 }
             }
+            ++elementIndex;
         }
         else
         {
+            elementIndex = 0;
             return false;
         }
     }
@@ -518,5 +543,10 @@ void STE::Dialogue::ask(Question* question)
         return;
     }
     options = question->getOptions();
+    if (speech == nullptr)
+    {
+        return;
+    }
+    speech->setString(sf::String(""));
 }
 

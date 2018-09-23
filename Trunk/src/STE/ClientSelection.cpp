@@ -12,6 +12,7 @@ STE::ClientSelection::ClientSelection(sf::RenderWindow* window) :
     isAir(false)
 {
     sf::Vector2f region = sf::Vector2f(window->getSize());
+    float offset = region.y*0.125f;
     quit = new Button(region*BUTTON_SCALE, "Quit", getFont(), DEFAULT_TEXT_COLOR, false);
     quit->setListener(this);
     fire = new Button(region*BUTTON_SCALE, "Fire", getFont(), DEFAULT_TEXT_COLOR, false);
@@ -22,6 +23,14 @@ STE::ClientSelection::ClientSelection(sf::RenderWindow* window) :
     earth->setListener(this);
     air = new Button(region*BUTTON_SCALE, "Air", getFont(), DEFAULT_TEXT_COLOR, false);
     air->setListener(this);
+    fire->setPosition(region*0.5f);
+    fire->move(-offset, (region.y*BUTTON_SCALE)+offset);
+    water->setPosition(region*0.5f);
+    water->move(-offset, ((region.y*BUTTON_SCALE)+offset)*-1.0f);
+    earth->setPosition(region*0.5f);
+    earth->move(offset, (region.y*BUTTON_SCALE)+offset);
+    air->setPosition(region*0.5f);
+    air->move(offset, ((region.y*BUTTON_SCALE)+offset)*-1.0f);
 }
 
 STE::ClientSelection::~ClientSelection()
@@ -62,6 +71,10 @@ int STE::ClientSelection::update(sf::RenderWindow* window, float deltaTime)
         return AIR_STATE_ID;
     }
     quit->update(window, deltaTime);
+    fire->update(window, deltaTime);
+    water->update(window, deltaTime);
+    earth->update(window, deltaTime);
+    air->update(window, deltaTime);
     return NULL_STATE_ID;
 }
 

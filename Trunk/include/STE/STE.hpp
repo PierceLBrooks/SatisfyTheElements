@@ -33,6 +33,6 @@
 #define BUTTON_PRESSED_COLOR (sf::Color(64, 64, 64, BUTTON_TRANSPARENCY))
 #define BUTTON_RELEASED_COLOR (sf::Color(196, 196, 196, BUTTON_TRANSPARENCY))
 
-#define DEFAULT_TEXT_COLOR (sf::Color::Green)
+#define DEFAULT_TEXT_COLOR (sf::Color::Black)
 
 #endif // STE_HPP

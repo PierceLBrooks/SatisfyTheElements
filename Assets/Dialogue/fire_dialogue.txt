@@ -1,0 +1,45 @@
+f
+Ugh, do you smell all that burning meat? It almost makes me sick! | anger
+At least they've got one good place here to eat. | smile
+And these vegan burgers that are made entirely of different kinds of lettuce really taste like the real thing! | happy
+Don't tell me you got anything other than something off the menu of where this came from | anger
+question
+I wasn't aware you would be so upet about my triple-pounder, five cheese, extra bacon gift from God | anger | -3 | You're starting off on thin ice.
+Of course not! Look, we're twinning! | happy | +5 | Good.
+
+Haha, sorry about that. That was mean. | blushing
+I guess I'm just on edge; I've got a cheerleading tryout tomorrow. | smile
+question
+Really? How long have you been cheerleading? You really look the part! | happy | +2 | Thanks! I've really been working on my figure. |
+smile | I've been tumbling pretty much since I could walk, haha.
+Cheerleading? I thought only middle schoolers cared about that. | anger | -7 | And you sit in your mom's basement playing dating sims? Digusting.
+That sounds tough, are you nervous? | surprise | +1 | Yeah, I guess.
+
+Anyhow, we don't have to talk about me all day. What do you like to do?
+question
+I'm really into reading. Hentai. Reading hentai. | surprise | -1 | Really? Ah, yeah. That's nice.
+I'm the best football player around! Uhh ... Quarterback! Yeah! I'm the local college's star quarterback! | smile | +0 | Star quarterback, huh? Funny, I don't remember ever seeing you at the games before.
+Hiking is my passion. Nothing makes me happier than a bright, sunny day and a solid pair of shoes! | happy | +3 | OMG I love hiking! We should go sometime! I know a place not too far from here where you can watch the sun set. Romantic, right?
+
+Hey, did you see they're building a Hot Topic here?
+question
+Yeah! I can't wait! | surprised | -2 | Yeah, me neither.
+Ugh, yeah. Middle school paradise. | happy | +3 | Haha, couldn't agree more.
+No. | surprise | -1 | Oh. |
+anger | What a conversation partner you are.
+
+My sister is really into Hot Topic. I can hardly get her out of that store. Chains EVERYWHERE. I wish they were building a Forever 21 instead. I mean, there are already two in this mall, but you can't have enough!
+question
+You got that right! | smile | +3 | I know. Me and my friends go there every Wednesday. It's therapudic to shop in a store with only good clothes.
+Are you kidding me? What a waste of resources. | anger | -6 | Uh, what are you even saying?
+I wish they'd put in a Wendy's. There's no real food here, just lettuce! | grossed_out | -4 | AS A VEGAN, I'd HAVE to disagree. I only approve of their salad.
+If only Gander Mountain would go back in business. | surprise | +0 | Okay ...
+
+Oh no, is it that time already? | surpised
+I should get going; I've got practice in a little while | smile
+question
+Where do you guys practice? Maybe I'll stop in and watch. | grossed_out | -90 | That doesn't merit a response. I'm leaving.
+I'll miss your starry eyes. | happy | +4 | Daw, you're so cute! Don't worry, you'll see them again, even if only from the stands.
+But your tits will miss me. | grossed_out | -90 | Even if they will, they'll absolutely, never ever, ever see you again.
+
+Bye! | happy

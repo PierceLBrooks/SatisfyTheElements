@@ -67,7 +67,9 @@ namespace STE
         std::vector<Statement*> statements;
         std::map<Button*, std::vector<Statement*>> responses;
         std::ifstream* file;
+        sf::Text* speech;
         int score;
+        unsigned int elementIndex;
         static std::map<std::string, int>* emotions;
     };
 }

@@ -21,7 +21,6 @@ STE::Intro::~Intro()
 
 int STE::Intro::update(sf::RenderWindow* window, float deltaTime)
 {
-    mouse();
     if (isQuit)
     {
         isQuit = false;
@@ -35,6 +34,7 @@ int STE::Intro::update(sf::RenderWindow* window, float deltaTime)
     buttons |= quit->update(window, deltaTime);
     if (buttons == 0)
     {
+        mouse();
         if (getIsReleased())
         {
             if (!dialogue->show())

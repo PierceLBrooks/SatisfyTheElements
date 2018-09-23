@@ -62,7 +62,7 @@ int main()
     sf::RenderWindow* window = new sf::RenderWindow();
     auto videoModes = sf::VideoMode::getFullscreenModes();
     // ^ hey C&D, check that one out lol
-    window->create(videoModes[videoModes.size()-1], "Satisfy the Elements", sf::Style::Default);
+    window->create(videoModes[videoModes.size()/2], "Satisfy the Elements", sf::Style::Default);
     window->setFramerateLimit(FPS_LIMIT);
     load();
     states[MENU_STATE_ID] = new STE::Menu(window, 10);

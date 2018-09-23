@@ -1,0 +1,59 @@
+a
+Wow, I love this emo-rap band! | happy
+Or maybe they'd prefer trans-punk? | smile
+Post-grunge-trans-metal-punk?
+Anyhow, glad you decided to come.
+So ...
+question
+So, how'd you hear of this band? | happy | +2 | Someone commented on my MySpace Blog who'd thought I'd like it.
+What are you talking about? This band is trash. | smile | +2 | Haha, yeah, but like in a good way.
+Do you come here often? | grossed_out | -1 | Never.
+
+This place is known for its trash bands. I'm surprised you hadn't heard of it. | grossed_out
+question
+I have, actually. I own the place. | grossed_out | -3 | Capitalist pig.
+Me too. | happy | +3 | Hella.
+I know you are but what am I. | surprised | +0 | No, you.
+
+So ... what's a question you'd ask on a first date? | smile
+question
+Why are your eyes so damn beautiful? | grossed_out | -3 | I'm not giving you the satisfaction of a response to that one.
+Who's your top SoundCloud rapper? | blushing | +4 | You are. I love your rendition of "Somewhere Over the Rainbow"; it's got such a grungy flavor.
+You want kids? | surprised | +1 | Not sure that's a good first date question. |
+happy | You should have your own meme page.
+
+I guess the only decent first date question I can think of is if you pronounce it "gif" or "jif". | happy
+question
+"Gif" | happy | +3 | That's good.
+"Jif" | anger | -6 | I'm not sure we should even try this if that's what you think.
+
+Well, what do you want to talk about?
+question
+I'd be happy to just stare into your eyes the rest of the night. | grossed_out | -4 | Uhm. I'd rather not.
+I don't know. | smile | +2 | Hella. 
+I mean, there's some shit going down in the Middle East right now? | anger | -1 | Uh, pass.
+How do you get your hair to stay like that? | happy | +2 | Static electricity; I prefer to consider myself more of a thunderstorm elemental than one of just air.
+
+I'll use my fakie to get us some drinks. What do you want?
+question
+Blue Hawaiian | surprised | -1 | Whoa. Wasn't expecting that. 
+Moscow Mule. | happy | +3 | Good choice, that's what I'm having.
+Whatever you're having. | smile | +1 | I hope you like Moscow Mule. No take backsies.
+Maybe you shouldnt use a fake id.... | surprised |-2| Fine, I'll use my real one.
+
+Here's yours. | smile
+You know, I'm really glad you came today.
+Hey, I wanna ask you something.
+Do you like Hot Topic?
+question
+Haha, no way. Poser central. | happy | +4 | Yeah, I guess so. I'll go in there now and again for skinny jeans and that's about it.
+Yeah! Where do you think I got this sick My Chemical Romance shirt? | anger | -3 | You mean someone didn't barf on you on the way here? |
+smile | Haha. Epic.
+
+Well, now that the band's done we should probably go. The management doesn't like people sticking around here after a certain hour. What did you think of them?
+question
+Pretty alright. No Werid Al or anything, just alright. | smile | +2 | Understandable, nothing like Amish Paradise, amirite?
+Great! You have the best taste in music! This was epic! | anger | -4 | Wow, you don't have to lie just to make me feel better. I know you hate post-grunge-trans-metal-punk!
+Shit. | happy | +4 | l o l epic
+
+Well, nice to meet you. | smile

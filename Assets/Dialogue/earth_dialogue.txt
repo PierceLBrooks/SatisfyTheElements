@@ -14,12 +14,13 @@ Better. I've got a dog. | grossed_out | -2 | Hm.
 I was barely able to make it over here on time; I was singing to my plants, and I nearly lost track of time! | smile
 I've got tomatoes and basil, planted together, of course, and lots of cauliflower! | happy
 What do you think plants think about? | smile
+question
 How the sunlight makes your eyes sparkle | blushing | +3 | I wish I could spend more time with them, but then I wouldn't have any room in my schedule for you, handsome.
 How they're doomed to live a lonesome life surrounded by disgusting bugs and darkness. | anger | -6 | Well, I hope my plants don't think like that.
 
 Speaking of food, you're so skinny! Can I get you something off the menu? Here - take a look.
 question
-*Order nothing* No, thanks. I'm watching my weight. Gotta fit into that dream swimsuit this summer! | happy | +2 | Alright, just you be careful! Don't want to starve yourself. You look great as you are; it's not worth risking your heath.
+*Order nothing* No, thanks. I'm watching my weight. Gotta fit into that dream swimsuit this summer! | happy | +2 | Alright,  just you be careful! Don't want to starve yourself. You look great as you are; it's not worth risking your heath.
 *Order the Vegan BLT* Yeah, you caught me. Haven't eaten anything today. | smile | +1 | Haha, gotcha! You've gotta take better care of yourself!
 *Order an actual pound of steak* If you insist! | surprise | -4 | That was unexpected.
 
