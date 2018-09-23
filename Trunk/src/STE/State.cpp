@@ -44,6 +44,11 @@ int STE::State::update(sf::RenderWindow* window, float deltaTime)
     mouse();
 }
 
+void STE::State::start()
+{
+
+}
+
 void STE::State::mouse()
 {
     if (isReleased)

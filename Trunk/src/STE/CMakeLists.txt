@@ -21,6 +21,7 @@ set(PROJECT_FILES
 	${SRC}/Intro.cpp
 	${SRC}/ClientSelection.cpp
 	${SRC}/Dialogue.cpp
+	${SRC}/Result.cpp
 	${INC}/CherryBlossoms.hpp
 	${INC}/Menu.hpp
 	${INC}/State.hpp
@@ -31,6 +32,7 @@ set(PROJECT_FILES
 	${INC}/Intro.hpp
 	${INC}/ClientSelection.hpp
 	${INC}/Dialogue.hpp
+	${INC}/Result.hpp
 )
 
 add_executable(SatisfyTheElements ${PROJECT_FILES})

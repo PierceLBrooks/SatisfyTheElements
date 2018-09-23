@@ -19,6 +19,7 @@ namespace STE
         ~Dialogue();
         bool show();
         int update(sf::RenderWindow* window, float deltaTime);
+        void setScore(int score);
         int getScore() const;
         static int getEmotion(const std::string& identifier);
         static void loadEmotions();

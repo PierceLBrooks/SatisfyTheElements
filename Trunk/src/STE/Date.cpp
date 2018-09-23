@@ -2,6 +2,7 @@
 // Author: Pierce Brooks
 
 #include <STE/Date.hpp>
+#include <STE/Result.hpp>
 #include <iostream>
 
 std::map<int, std::string>* STE::Date::dates = nullptr;
@@ -50,7 +51,16 @@ int STE::Date::update(sf::RenderWindow* window, float deltaTime)
         {
             if (!dialogue->show())
             {
-                return CLIENT_SELECTION_STATE_ID;
+                if (dialogue->getScore() > 0)
+                {
+                    Result::setIsWin(true);
+                }
+                else
+                {
+                    Result::setIsWin(false);
+                }
+                dialogue->setScore(0);
+                return RESULT_STATE_ID;
             }
         }
     }

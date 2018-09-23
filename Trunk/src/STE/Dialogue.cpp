@@ -166,6 +166,11 @@ int STE::Dialogue::update(sf::RenderWindow* window, float deltaTime)
     return 0;
 }
 
+void STE::Dialogue::setScore(int score)
+{
+    this->score = score;
+}
+
 int STE::Dialogue::getScore() const
 {
     return score;
@@ -523,6 +528,7 @@ bool STE::Dialogue::show()
         }
         else
         {
+            speech->setString(sf::String(""));
             elementIndex = 0;
             return false;
         }

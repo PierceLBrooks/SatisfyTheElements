@@ -9,6 +9,7 @@
 #include <STE/Intro.hpp>
 #include <STE/ClientSelection.hpp>
 #include <STE/Date.hpp>
+#include <STE/Result.hpp>
 #include <SFML/System/Clock.hpp>
 #include <SFML/Window/Event.hpp>
 #include <SFML/Graphics/Font.hpp>
@@ -72,6 +73,7 @@ int main()
     states[WATER_STATE_ID] = new STE::Date(window, WATER_STATE_ID);
     states[EARTH_STATE_ID] = new STE::Date(window, EARTH_STATE_ID);
     states[AIR_STATE_ID] = new STE::Date(window, AIR_STATE_ID);
+    states[RESULT_STATE_ID] = new STE::Result(window, RESULT_STATE_ID);
     clock->restart();
     if (!font->loadFromFile("./Assets/Fonts/Arial/arial.ttf"))
     {
@@ -125,9 +127,14 @@ int main()
             }
             if (stateNext != NULL_STATE_ID)
             {
+                std::map<int, STE::State*>::iterator iter = states.find(stateNext);
                 statePrevious = state;
                 state = stateNext;
                 std::cout << state << std::endl;
+                if (iter != states.end())
+                {
+                    iter->second->start();
+                }
             }
         }
         fps->setString(sf::String(std::to_string(static_cast<int>(1.0f/deltaTime))));

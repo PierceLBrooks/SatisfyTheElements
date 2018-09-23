@@ -99,6 +99,12 @@ void STE::Button::setAction(Action* action)
     this->action = action;
 }
 
+void STE::Button::setLabel(const std::string& label)
+{
+    this->label->setString(sf::String(label));
+    this->bounds = this->label->getLocalBounds();
+}
+
 void STE::Button::reset()
 {
     form->setPosition(getPosition());

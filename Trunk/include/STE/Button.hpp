@@ -32,6 +32,7 @@ namespace STE
         bool getIsPressed() const;
         void setListener(Listener* listener);
         void setAction (Action* action);
+        void setLabel(const std::string& label);
     private:
         void reset();
         void press();
