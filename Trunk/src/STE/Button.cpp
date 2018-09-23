@@ -20,6 +20,7 @@ STE::Button::Button(const sf::Vector2f& region, const std::string& content, sf::
     region(region),
     isPressed(false),
     listener(nullptr),
+    action(nullptr),
     center(center)
 {
     form = new sf::RectangleShape();
@@ -35,14 +36,17 @@ STE::Button::Button(const sf::Vector2f& region, const std::string& content, sf::
 
 STE::Button::~Button()
 {
-
+    delete action;
 }
 
 int STE::Button::update(sf::RenderWindow* window, float deltaTime)
 {
+    bool released = false;
+    bool hover = false;
     sf::Vector2f mouse = sf::Vector2f(sf::Mouse::getPosition(*window));
     if (form->getGlobalBounds().contains(mouse))
     {
+        hover = true;
         if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
         {
             if (!isPressed)
@@ -55,6 +59,7 @@ int STE::Button::update(sf::RenderWindow* window, float deltaTime)
             if (isPressed)
             {
                 release();
+                released = true;
             }
         }
     }
@@ -68,6 +73,14 @@ int STE::Button::update(sf::RenderWindow* window, float deltaTime)
     reset();
     window->draw(*form);
     window->draw(*label);
+    if (released)
+    {
+        return -1;
+    }
+    if (hover)
+    {
+        return 1;
+    }
     return 0;
 }
 
@@ -79,6 +92,11 @@ bool STE::Button::getIsPressed() const
 void STE::Button::setListener(Listener* listener)
 {
     this->listener = listener;
+}
+
+void STE::Button::setAction(Action* action)
+{
+    this->action = action;
 }
 
 void STE::Button::reset()
@@ -116,6 +134,10 @@ void STE::Button::press()
     {
         listener->didPress(this);
     }
+    if (action != nullptr)
+    {
+        (*action)(this, true);
+    }
 }
 
 void STE::Button::release()
@@ -124,5 +146,9 @@ void STE::Button::release()
     if (listener != nullptr)
     {
         listener->didRelease(this);
+    }
+        if (action != nullptr)
+    {
+        (*action)(this, false);
     }
 }

@@ -1,4 +1,4 @@
-smile, happy, anger, grossed_out, blushing, surprise, sad
+smile, happy, anger, grossed_out, blushing, surprise
 #w
 #thisisthequestion
 #question

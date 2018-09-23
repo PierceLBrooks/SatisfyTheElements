@@ -14,7 +14,7 @@ Do you have any siblings? | smile
 question
 Two brothers and one sister. They've actually started a band, "The Incest Wagon" | grossed_out | -3 | I wish I didn't know that.
 My mother ate my sister when she was young. | surprise | +0 | No way! I would have had a younger brother if he hadn't been eaten by my dad. |
-!!!grossed_out | Right out of the womb. Never seen anything like it.
+grossed_out | Right out of the womb. Never seen anything like it.
 
 Well, anyhow, I've been reading the "Sisterhood of the Travelling Pants" books. Ever heard of them?
 I've really enjoyed the discussion domestic violence and the underlying themes of disease spreading through unwashed fabrics.
@@ -23,4 +23,13 @@ No, haven't heard of them. The only book I've ever read is the original transcri
 Yes! I love those books! Uh ... I loved the part when ... uh ... when the girl wore the pants!! | smile | +1 | I, also, loved the part where the girl wore the pants. That one was my favorite.
 I also love socioeconomic commentary novels. | happy | +3 | How wonderful for you!
 
+Books have always been a big part of my life. | smile
+What interests do you have?
+question
+Pissing in lakes. | surprised | -3 | Uh, heh heh ... 
+Playing League of Legends | grossed_out | -4 | Ew, not just video games, but SHIT games?! Ugh. |
+smile | Well, maybe we can still find something else in common.
+Reading quietly. | happy | +6 | Oh, that's great! I hope we can read together sometime!
 
+Maybe we can do something together next time we meet! | happy
+Well, it's getting late. Hey, it's been great meeting you! Hope we see eachother again soon. | smile

@@ -2,6 +2,7 @@
 // Author: Pierce Brooks
 
 #include <map>
+#include <iostream>
 #include <STE/STE.hpp>
 #include <STE/State.hpp>
 #include <STE/Menu.hpp>
@@ -14,6 +15,20 @@
 #include <SFML/Graphics/Text.hpp>
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
+
+void load()
+{
+    STE::Date::loadDates();
+    STE::Entity::loadTextures();
+    STE::Dialogue::loadEmotions();
+}
+
+void unload()
+{
+    STE::Date::unloadDates();
+    STE::Entity::unloadTextures();
+    STE::Dialogue::unloadEmotions();
+}
 
 int handleState(sf::RenderWindow* window, float deltaTime, int state, std::map<int, STE::State*>& states)
 {
@@ -48,8 +63,7 @@ int main()
     // ^ hey C&D, check that one out lol
     window->create(videoModes[videoModes.size()-1], "Satisfy the Elements", sf::Style::Default);
     window->setFramerateLimit(FPS_LIMIT);
-    STE::Date::loadDates();
-    STE::Entity::loadTextures();
+    load();
     states[MENU_STATE_ID] = new STE::Menu(window, 10);
     states[INTRO_STATE_ID] = new STE::Intro(window);
     states[CLIENT_SELECTION_STATE_ID] = new STE::ClientSelection(window);
@@ -112,9 +126,9 @@ int main()
             {
                 statePrevious = state;
                 state = stateNext;
+                std::cout << state << std::endl;
             }
         }
-
         fps->setString(sf::String(std::to_string(static_cast<int>(1.0f/deltaTime))));
         fps->setPosition(static_cast<float>(window->getSize().x), 0.0f);
         fps->move((fps->getPosition()-fps->findCharacterPos(fps->getString().getSize()-1))*2.0f);
@@ -125,8 +139,7 @@ int main()
     delete font;
     delete fps;
     delete window;
-    STE::Date::unloadDates();
-    STE::Entity::unloadTextures();
+    unload();
     for (std::map<int, STE::State*>::iterator iter = states.begin(); iter != states.end(); ++iter)
     {
         delete iter->second;

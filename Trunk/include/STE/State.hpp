@@ -18,12 +18,17 @@ namespace STE
         virtual ~State();
         int getID() const;
         sf::Font* getFont() const;
+        bool getIsPressed() const;
+        bool getIsReleased() const;
         virtual int update(sf::RenderWindow* window, float deltaTime);
+        void mouse();
     protected:
         virtual void didPress(Button* button);
         virtual void didRelease(Button* button);
     private:
         int id;
+        bool isPressed;
+        bool isReleased;
         sf::Font* font;
     };
 }

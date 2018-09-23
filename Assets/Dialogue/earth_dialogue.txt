@@ -1,0 +1,41 @@
+e
+Hey! glad we could meet here -- they've got a mean macha smoothie! | happy
+I'm Earth, and you are? | smile
+question
+The ride of a lifetime. | grossed_out | -2 | Ah, maybe I should get off, then.
+Your worst nightmare, or your most orgasmic dream. | happy | +1 | Haha! Well, I'll have you know that I'm quite something myself. I can make a mean guacamole!
+Just a quiet nobody. | smile | +0 | Awh, well I hope we can turn that frown upside down!
+
+You are such a cutie! You really know how to dress yourself. Did you have a bunch of sisters growing up? Haha. | smile
+question
+Yes, actually. A baker's dozen. I was my mother's fourteenth kid. Lots of hand-me-downs, so I've had no choice to dress in really well selected clothes. | surprised | +1 | Wow! That must've been rough. You really know the ladies, then! Haha!
+Better. I've got a dog. | grossed_out | -2 | Hm.
+
+I was barely able to make it over here on time; I was singing to my plants, and I nearly lost track of time! | smile
+I've got tomatoes and basil, planted together, of course, and lots of cauliflower! | happy
+What do you think plants think about? | smile
+How the sunlight makes your eyes sparkle | blushing | +3 | I wish I could spend more time with them, but then I wouldn't have any room in my schedule for you, handsome.
+How they're doomed to live a lonesome life surrounded by disgusting bugs and darkness. | anger | -6 | Well, I hope my plants don't think like that.
+
+Speaking of food, you're so skinny! Can I get you something off the menu? Here - take a look.
+question
+*Order nothing* No, thanks. I'm watching my weight. Gotta fit into that dream swimsuit this summer! | happy | +2 | Alright, just you be careful! Don't want to starve yourself. You look great as you are; it's not worth risking your heath.
+*Order the Vegan BLT* Yeah, you caught me. Haven't eaten anything today. | smile | +1 | Haha, gotcha! You've gotta take better care of yourself!
+*Order an actual pound of steak* If you insist! | surprise | -4 | That was unexpected.
+
+Have you been through college? I've got a degree myself, but I've decided to dedicate myself to plants and the beautification of the city rather than some desk job. | smile
+question
+Really? What inspired you to do that? | happy | +2 | My plants, of course!
+Oh, desk job any day! Think of the mad stacks of cash! | angry | -3 | Yeah, I guess, but at the cost of the happiness of my wonderful plants? I don't think so.
+Yeah, made it through a CS degree. Regret it with all my heart. I'd rather eat shit than write software. | happy | +1 | Gee, tell me how you really feel! Haha.
+
+I've always dreamt about having a little blue house with a white picket fence, you know? Little feet runnin' around, and a sick nasty George Foreman out back. | smile
+question
+I hope you mean disembodied feet, 'cause kids are actual pieces of garbage. | anger | -20 | I think we're done here. Thank you for your time, and thanks for wasting mine.
+What a lovely thought! It's embarassing, but I'm still living in my parents' basement. Haha | happy | +5 | Haha, bet you wanna get out of there! |
+smile | Maybe the opportunity will arise in the future. |
+blushing | If the plants like you.
+
+Well, as much as I've had a great time with you here, it's time for me to go. | smile
+I've got a new project I'm working on -- trying to train pumpkins up on stilts. Hope I can show you sometime! | happy
+

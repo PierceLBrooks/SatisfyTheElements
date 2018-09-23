@@ -69,7 +69,7 @@ int STE::CherryBlossoms::update(sf::RenderWindow* window, float deltaTime)
     }
     for (int i = 0; i != cherryBlossoms.size(); ++i)
     {
-        if (cherryBlossoms[i]->update(window, deltaTime) != 0)
+        if (cherryBlossoms[i]->update(window, deltaTime) < 0)
         {
             cherryBlossoms.erase(cherryBlossoms.begin()+i);
             --i;

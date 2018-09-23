@@ -19,7 +19,7 @@ STE::Date::Date(sf::RenderWindow* window, int type) :
     }
     else
     {
-        dialogue = new Dialogue("./Assets/Dialogue/"+date);
+        dialogue = new Dialogue(window, "./Assets/Dialogue/"+date, this);
     }
     quit = new Button(region*0.125f, "Quit", getFont(), DEFAULT_TEXT_COLOR, false);
     quit->setListener(this);
@@ -32,6 +32,7 @@ STE::Date::~Date()
 
 int STE::Date::update(sf::RenderWindow* window, float deltaTime)
 {
+    mouse();
     if (isQuit)
     {
         isQuit = false;

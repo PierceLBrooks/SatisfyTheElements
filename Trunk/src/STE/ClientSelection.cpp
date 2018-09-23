@@ -35,6 +35,7 @@ STE::ClientSelection::~ClientSelection()
 
 int STE::ClientSelection::update(sf::RenderWindow* window, float deltaTime)
 {
+    mouse();
     if (isQuit)
     {
         isQuit = false;

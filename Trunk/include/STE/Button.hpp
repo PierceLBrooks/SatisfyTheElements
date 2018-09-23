@@ -8,6 +8,7 @@
 #include <SFML/Graphics/Text.hpp>
 #include <SFML/Graphics/Font.hpp>
 #include <STE/Entity.hpp>
+#include <functional>
 #include <string>
 
 namespace STE
@@ -15,6 +16,7 @@ namespace STE
     class Button : public Entity, public sf::Transformable
     {
     public:
+        typedef std::function<void(Button*, bool)> Action;
         class Listener
         {
         protected:
@@ -29,6 +31,7 @@ namespace STE
         int update(sf::RenderWindow* window, float deltaTime);
         bool getIsPressed() const;
         void setListener(Listener* listener);
+        void setAction (Action* action);
     private:
         void reset();
         void press();
@@ -40,6 +43,7 @@ namespace STE
         sf::Vector2f region;
         sf::FloatRect bounds;
         Listener* listener;
+        Action* action;
     };
 }
 

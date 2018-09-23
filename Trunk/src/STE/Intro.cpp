@@ -8,7 +8,7 @@ STE::Intro::Intro(sf::RenderWindow* window) :
     isQuit(false)
 {
     sf::Vector2f region = sf::Vector2f(window->getSize());
-    dialogue = new Dialogue("./Assets/Dialogue/water_dialogue.txt");
+    dialogue = new Dialogue(window, "./Assets/Dialogue/water_dialogue.txt", this);
     quit = new Button(region*0.125f, "Quit", getFont(), DEFAULT_TEXT_COLOR, false);
     quit->setListener(this);
 }
@@ -21,6 +21,7 @@ STE::Intro::~Intro()
 
 int STE::Intro::update(sf::RenderWindow* window, float deltaTime)
 {
+    mouse();
     if (isQuit)
     {
         isQuit = false;
@@ -30,7 +31,18 @@ int STE::Intro::update(sf::RenderWindow* window, float deltaTime)
     {
         return INVALID_STATE_ID;
     }
-    quit->update(window, deltaTime);
+    int buttons = 0;
+    buttons |= quit->update(window, deltaTime);
+    if (buttons == 0)
+    {
+        if (getIsReleased())
+        {
+            if (!dialogue->show())
+            {
+                return CLIENT_SELECTION_STATE_ID;
+            }
+        }
+    }
     return NULL_STATE_ID;
 }
 
