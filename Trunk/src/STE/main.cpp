@@ -19,15 +19,15 @@
 
 void load()
 {
-    STE::Date::loadDates();
-    STE::Entity::loadTextures();
+    STE::Date::load();
+    STE::Entity::load();
     STE::Dialogue::load();
 }
 
 void unload()
 {
-    STE::Date::unloadDates();
-    STE::Entity::unloadTextures();
+    STE::Date::unload();
+    STE::Entity::unload();
     STE::Dialogue::unload();
 }
 
@@ -63,7 +63,7 @@ int main()
     sf::RenderWindow* window = new sf::RenderWindow();
     auto videoModes = sf::VideoMode::getFullscreenModes();
     // ^ hey C&D, check that one out lol
-    window->create(videoModes[videoModes.size()/2], "Satisfy the Elements", sf::Style::Default);
+    window->create(videoModes[videoModes.size()/2], "Satisfy the Elements", sf::Style::Titlebar|sf::Style::Close);
     window->setFramerateLimit(FPS_LIMIT);
     load();
     states[MENU_STATE_ID] = new STE::Menu(window, 10);
@@ -122,6 +122,7 @@ int main()
             stateNext = handleState(window, deltaTime, state, states);
             if (stateNext < NULL_STATE_ID)
             {
+                std::cout << "Invalid state!" << std::endl;
                 window->close();
                 continue;
             }

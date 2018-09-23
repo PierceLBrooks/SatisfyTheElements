@@ -25,28 +25,61 @@ STE::Date::Date(sf::RenderWindow* window, int type) :
     }
     quit = new Button(region*BUTTON_SCALE, "Quit", getFont(), DEFAULT_TEXT_COLOR, false);
     quit->setListener(this);
+    music = new sf::Music();
+    switch (type)
+    {
+    case FIRE_STATE_ID:
+        music->openFromFile("./Assets/Sounds/Music/Steppin_Out.ogg");
+        break;
+    case WATER_STATE_ID:
+        music->openFromFile("./Assets/Sounds/Music/Danosongs_-_Great_World_-_Acoustic_Rock_Mix.ogg");
+        break;
+    case EARTH_STATE_ID:
+        music->openFromFile("./Assets/Sounds/Music/Danosongs_-_West_in_the_Shadows.ogg");
+        break;
+    case AIR_STATE_ID:
+        music->openFromFile("./Assets/Sounds/Music/Danosongs_-_Copper_Mountain.ogg");
+        break;
+    default:
+        delete music;
+        music = nullptr;
+        break;
+    }
+    if (music != nullptr)
+    {
+        music->setLoop(true);
+        music->setVolume(DEFAULT_VOLUME);
+    }
 }
 
 STE::Date::~Date()
 {
     delete quit;
     delete dialogue;
+    delete music;
 }
 
 int STE::Date::update(sf::RenderWindow* window, float deltaTime)
 {
+    if (music == nullptr)
+    {
+        return INVALID_STATE_ID;
+    }
     if (dialogue == nullptr)
     {
         return INVALID_STATE_ID;
     }
     if ((isQuit) && (!isDone))
     {
-        dialogue->reset();
         isQuit = false;
+        dialogue->reset();
+        dialogue->finish();
+        music->stop();
         return MENU_STATE_ID;
     }
     if (dialogue->update(window, deltaTime) < 0)
     {
+        music->stop();
         return INVALID_STATE_ID;
     }
     if (isDone)
@@ -56,6 +89,7 @@ int STE::Date::update(sf::RenderWindow* window, float deltaTime)
         {
             isDone = false;
             dialogue->finish();
+            music->stop();
             return RESULT_STATE_ID;
         }
         return NULL_STATE_ID;
@@ -104,7 +138,7 @@ std::string STE::Date::getDate(int type)
     return "";
 }
 
-void STE::Date::loadDates()
+void STE::Date::load()
 {
     if (dates != nullptr)
     {
@@ -117,7 +151,7 @@ void STE::Date::loadDates()
     (*dates)[AIR_STATE_ID] = "air_dialogue.txt";
 }
 
-void STE::Date::unloadDates()
+void STE::Date::unload()
 {
     if (dates == nullptr)
     {
@@ -126,6 +160,15 @@ void STE::Date::unloadDates()
     dates->clear();
     delete dates;
     dates = nullptr;
+}
+
+void STE::Date::start()
+{
+    if (music == nullptr)
+    {
+        return;
+    }
+    music->play();
 }
 
 void STE::Date::didPress(Button* button)

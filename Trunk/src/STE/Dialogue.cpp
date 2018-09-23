@@ -583,9 +583,9 @@ void STE::Dialogue::parse(const sf::Vector2f& region, State* state)
                     ++splitCount;
                     if (splitCount > MAX_LINE_LENGTH)
                     {
-                        if ((line[i] == '.') || (line[i] == '!') || (line[i] == '?'))
+                        if (line[i] == ' ')
                         {
-                            split.push_back(line.substr(splitOffset, splitCount+1));
+                            split.push_back(line.substr(splitOffset, splitCount));
                             ++i;
                             splitOffset = i;
                             splitCount = 0;
@@ -687,6 +687,7 @@ void STE::Dialogue::show(Statement* statement)
     region = speech->getGlobalBounds();
     speech->setOrigin(sf::Vector2f(region.width*0.5f, region.height*2.0f));
     show(statement->getCharacter(), statement->getEmotion());
+    loadSound("./Assets/Sounds/Effects/nenadsimic_menu-selection-click.wav")->play();
     std::cout << statement->getContent() << std::endl;
 }
 

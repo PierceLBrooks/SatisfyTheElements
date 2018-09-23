@@ -6,6 +6,7 @@
 
 #include <STE/State.hpp>
 #include <STE/Dialogue.hpp>
+#include <SFML/Audio/Music.hpp>
 
 namespace STE
 {
@@ -16,8 +17,9 @@ namespace STE
         ~Date();
         int update(sf::RenderWindow* window, float deltaTime);
         static std::string getDate(int type);
-        static void loadDates();
-        static void unloadDates();
+        static void load();
+        static void unload();
+        void start();
     protected:
         void didPress(Button* button);
         void didRelease(Button* button);
@@ -27,6 +29,7 @@ namespace STE
         bool isDone;
         Dialogue* dialogue;
         Button* quit;
+        sf::Music* music;
     };
 }
 

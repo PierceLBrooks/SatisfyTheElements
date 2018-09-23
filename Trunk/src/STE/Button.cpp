@@ -73,6 +73,28 @@ int STE::Button::update(sf::RenderWindow* window, float deltaTime)
         }
     }
     reset();
+    if (isPressed)
+    {
+        form->setFillColor(BUTTON_PRESSED_COLOR);
+    }
+    else
+    {
+        if (hover)
+        {
+            if (form->getFillColor() == BUTTON_RELEASED_COLOR)
+            {
+                loadSound("./Assets/Sounds/Effects/nenadsimic_menu-selection-click.wav")->play();
+            }
+            form->setFillColor(sf::Color(static_cast<sf::Uint8>((static_cast<float>(BUTTON_PRESSED_COLOR.r)+static_cast<float>(BUTTON_RELEASED_COLOR.r))*0.5f),
+                                         static_cast<sf::Uint8>((static_cast<float>(BUTTON_PRESSED_COLOR.g)+static_cast<float>(BUTTON_RELEASED_COLOR.g))*0.5f),
+                                         static_cast<sf::Uint8>((static_cast<float>(BUTTON_PRESSED_COLOR.b)+static_cast<float>(BUTTON_RELEASED_COLOR.b))*0.5f),
+                                         static_cast<sf::Uint8>((static_cast<float>(BUTTON_PRESSED_COLOR.a)+static_cast<float>(BUTTON_RELEASED_COLOR.a))*0.5f)));
+        }
+        else
+        {
+            form->setFillColor(BUTTON_RELEASED_COLOR);
+        }
+    }
     window->draw(*form);
     window->draw(*label);
     if (released)
@@ -119,15 +141,6 @@ void STE::Button::reset()
     label->setScale(sf::Vector2f((region.x/bounds.width)*1.5f, region.y/bounds.height)*0.5f);
     label->move(label->getGlobalBounds().width*0.5f, 0.0f);
 
-    if (!isPressed)
-    {
-        form->setFillColor(BUTTON_RELEASED_COLOR);
-    }
-    else
-    {
-        form->setFillColor(BUTTON_PRESSED_COLOR);
-    }
-
     if (!center)
     {
         form->move(form->getOrigin());
@@ -137,6 +150,10 @@ void STE::Button::reset()
 
 void STE::Button::press()
 {
+    if (!isPressed)
+    {
+        loadSound("./Assets/Sounds/Effects/inspectorj_ui-confirmation-alert-a4.wav")->play();
+    }
     isPressed = true;
     if (listener != nullptr)
     {

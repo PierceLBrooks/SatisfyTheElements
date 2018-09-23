@@ -7,7 +7,7 @@
 #define STE_HPP
 
 #define DEFAULT_SCORE (5)
-
+#define DEFAULT_VOLUME (25.0f)
 #define FPS_LIMIT (60)
 #define MAX_DELTA_TIME (0.125f)
 #define BUTTON_SCALE (0.125f)
@@ -38,6 +38,6 @@
 
 #define DEFAULT_TEXT_COLOR (sf::Color::White)
 #define TEXT_OUTLINE_THICKNESS (0.125f)
-#define MAX_LINE_LENGTH (60)
+#define MAX_LINE_LENGTH (80)
 
 #endif // STE_HPP

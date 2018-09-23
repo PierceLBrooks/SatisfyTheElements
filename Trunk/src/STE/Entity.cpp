@@ -2,8 +2,10 @@
 // Author: Pierce Brooks
 
 #include <STE/Entity.hpp>
+#include <STE/STE.hpp>
 
 std::map<std::string, sf::Texture*>* STE::Entity::textures = nullptr;
+std::map<std::string, std::pair<sf::SoundBuffer*, sf::Sound*>>* STE::Entity::sounds = nullptr;
 
 STE::Entity::Entity()
 {
@@ -41,26 +43,67 @@ sf::Texture* STE::Entity::loadTexture(const std::string& path)
     return texture;
 }
 
-void STE::Entity::loadTextures()
+sf::Sound* STE::Entity::loadSound(const std::string& path)
 {
-    if (textures != nullptr)
+    sf::Sound* sound = nullptr;
+    if (sounds == nullptr)
     {
-        return;
+        return sound;
     }
-    textures = new std::map<std::string, sf::Texture*>();
+    std::map<std::string, std::pair<sf::SoundBuffer*, sf::Sound*>>::iterator iter = sounds->find(path);
+    if (iter != sounds->end())
+    {
+        sound = std::get<1>(iter->second);
+    }
+    else
+    {
+        sf::SoundBuffer* buffer = new sf::SoundBuffer();
+        if (!buffer->loadFromFile(path))
+        {
+            delete buffer;
+            return sound;
+        }
+        sound = new sf::Sound();
+        sound->setBuffer(*buffer);
+        sound->setVolume(DEFAULT_VOLUME);
+        (*sounds)[path] = std::pair<sf::SoundBuffer*, sf::Sound*>(buffer, sound);
+    }
+    return sound;
 }
 
-void STE::Entity::unloadTextures()
+void STE::Entity::load()
 {
     if (textures == nullptr)
     {
-        return;
+        textures = new std::map<std::string, sf::Texture*>();
     }
-    for (std::map<std::string, sf::Texture*>::iterator iter = textures->begin(); iter != textures->end(); ++iter)
+    if (sounds == nullptr)
     {
-        delete iter->second;
+        sounds = new std::map<std::string, std::pair<sf::SoundBuffer*, sf::Sound*>>();
     }
-    textures->clear();
-    delete textures;
-    textures = nullptr;
+}
+
+void STE::Entity::unload()
+{
+    if (textures != nullptr)
+    {
+        for (std::map<std::string, sf::Texture*>::iterator iter = textures->begin(); iter != textures->end(); ++iter)
+        {
+            delete iter->second;
+        }
+        textures->clear();
+        delete textures;
+        textures = nullptr;
+    }
+    if (sounds != nullptr)
+    {
+        for (std::map<std::string, std::pair<sf::SoundBuffer*, sf::Sound*>>::iterator iter = sounds->begin(); iter != sounds->end(); ++iter)
+        {
+            delete std::get<0>(iter->second);
+            delete std::get<1>(iter->second);
+        }
+        sounds->clear();
+        delete sounds;
+        sounds = nullptr;
+    }
 }
