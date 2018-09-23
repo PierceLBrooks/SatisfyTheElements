@@ -26,6 +26,10 @@ int STE::Intro::update(sf::RenderWindow* window, float deltaTime)
         isQuit = false;
         return MENU_STATE_ID;
     }
+    if (dialogue == nullptr)
+    {
+        return INVALID_STATE_ID;
+    }
     if (dialogue->update(window, deltaTime) < 0)
     {
         return INVALID_STATE_ID;

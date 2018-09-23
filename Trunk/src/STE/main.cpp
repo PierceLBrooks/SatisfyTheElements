@@ -21,14 +21,14 @@ void load()
 {
     STE::Date::loadDates();
     STE::Entity::loadTextures();
-    STE::Dialogue::loadEmotions();
+    STE::Dialogue::load();
 }
 
 void unload()
 {
     STE::Date::unloadDates();
     STE::Entity::unloadTextures();
-    STE::Dialogue::unloadEmotions();
+    STE::Dialogue::unload();
 }
 
 int handleState(sf::RenderWindow* window, float deltaTime, int state, std::map<int, STE::State*>& states)

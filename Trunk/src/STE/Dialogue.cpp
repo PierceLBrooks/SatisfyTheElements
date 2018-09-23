@@ -6,6 +6,8 @@
 #include <cstdlib>
 
 std::map<std::string, int>* STE::Dialogue::emotions = nullptr;
+std::map<int, std::string>* STE::Dialogue::emotionPaths = nullptr;
+std::map<int, std::string>* STE::Dialogue::characterPaths = nullptr;
 
 STE::Dialogue::Element::Element(bool type, int character) :
     type(type),
@@ -90,10 +92,16 @@ void STE::Dialogue::Question::addOption(Button* option)
 }
 
 STE::Dialogue::Dialogue(sf::RenderWindow* window, const std::string& path, State* state) :
-    score(0),
-    elementIndex(0)
+    score(1),
+    elementIndex(0),
+    characterEmotion(nullptr)
 {
+    if (state == nullptr)
+    {
+        return;
+    }
     sf::Vector2f region = sf::Vector2f(window->getSize());
+    std::string backgroundPath;
     std::string line;
     std::cout << path << std::endl;
     file = new std::ifstream();
@@ -120,10 +128,40 @@ STE::Dialogue::Dialogue(sf::RenderWindow* window, const std::string& path, State
     speech->setPosition(region.x*0.5f, region.y);
     speech->setString(sf::String(""));
     speech->setCharacterSize(static_cast<int>(static_cast<float>(speech->getCharacterSize())*0.75f));
+    switch (state->getID())
+    {
+    case FIRE_STATE_ID:
+        backgroundPath = "mall";
+        break;
+    case WATER_STATE_ID:
+        backgroundPath = "park";
+        break;
+    case EARTH_STATE_ID:
+        backgroundPath = "coffee";
+        break;
+    case AIR_STATE_ID:
+        backgroundPath = "concert";
+        break;
+    default:
+        backgroundPath = "";
+        break;
+    }
+    if (backgroundPath.empty())
+    {
+        background = nullptr;
+    }
+    else
+    {
+        background = new sf::Sprite();
+        background->setTexture(*loadTexture("./Assets/Images/Backgrounds/"+backgroundPath+".png"));
+        background->setOrigin(sf::Vector2f(background->getTexture()->getSize())*0.5f);
+    }
 }
 
 STE::Dialogue::~Dialogue()
 {
+    delete characterEmotion;
+    delete background;
     delete file;
     for (unsigned int i = 0; i != elements.size(); ++i)
     {
@@ -148,6 +186,19 @@ STE::Dialogue::~Dialogue()
 
 int STE::Dialogue::update(sf::RenderWindow* window, float deltaTime)
 {
+    sf::Vector2f region = sf::Vector2f(window->getSize());
+    if (background != nullptr)
+    {
+        background->setPosition(region*0.5f);
+        background->setScale(region.x/static_cast<float>(background->getTexture()->getSize().x), region.y/static_cast<float>(background->getTexture()->getSize().y));
+        window->draw(*background);
+    }
+    if (characterEmotion != nullptr)
+    {
+        characterEmotion->setScale(region.y/static_cast<float>(characterEmotion->getTexture()->getSize().y), region.y/static_cast<float>(characterEmotion->getTexture()->getSize().y));
+        characterEmotion->setPosition(region.x*0.5f, region.y);
+        window->draw(*characterEmotion);
+    }
     if (speech != nullptr)
     {
         if (speech->getString().getSize() != 0)
@@ -215,45 +266,105 @@ int STE::Dialogue::getEmotion(const std::string& identifier)
     return iter->second;
 }
 
-void STE::Dialogue::loadEmotions()
+std::string STE::Dialogue::getEmotionPath(int emotion)
 {
-    if (emotions != nullptr)
+    if (emotionPaths == nullptr)
     {
-        return;
+        return "";
     }
-    emotions = new std::map<std::string, int>();
-    (*emotions)["smile"] = 1;
-    (*emotions)["smiling"] = 1;
-    (*emotions)["happy"] = 2;
-    (*emotions)["happiness"] = 2;
-    (*emotions)["anger"] = 3;
-    (*emotions)["angry"] = 3;
-    (*emotions)["grossed_out"] = 4;
-    (*emotions)["gross_out"] = 4;
-    (*emotions)["blushing"] = 5;
-    (*emotions)["blush"] = 5;
-    (*emotions)["surprise"] = 6;
-    (*emotions)["surprised"] = 6;
+    std::map<int, std::string>::iterator iter = emotionPaths->find(emotion);
+    if (iter != emotionPaths->end())
+    {
+        return iter->second;
+    }
+    return "";
 }
 
-void STE::Dialogue::unloadEmotions()
+std::string STE::Dialogue::getCharacterPath(int character)
+{
+    if (characterPaths == nullptr)
+    {
+        return "";
+    }
+    std::map<int, std::string>::iterator iter = characterPaths->find(character);
+    if (iter != characterPaths->end())
+    {
+        return iter->second;
+    }
+    return "";
+}
+
+void STE::Dialogue::load()
 {
     if (emotions == nullptr)
     {
-        return;
+        emotions = new std::map<std::string, int>();
+        (*emotions)["smile"] = 1;
+        (*emotions)["smiling"] = 1;
+        (*emotions)["happy"] = 2;
+        (*emotions)["happiness"] = 2;
+        (*emotions)["anger"] = 3;
+        (*emotions)["angry"] = 3;
+        (*emotions)["grossed_out"] = 4;
+        (*emotions)["gross_out"] = 4;
+        (*emotions)["blushing"] = 5;
+        (*emotions)["blush"] = 5;
+        (*emotions)["surprise"] = 6;
+        (*emotions)["surprised"] = 6;
     }
-    emotions->clear();
-    delete emotions;
-    emotions = nullptr;
+    if (emotionPaths == nullptr)
+    {
+        emotionPaths = new std::map<int, std::string>();
+        (*emotionPaths)[1] = "smile";
+        (*emotionPaths)[2] = "happy";
+        (*emotionPaths)[3] = "anger";
+        (*emotionPaths)[4] = "grossed";
+        (*emotionPaths)[5] = "blushing";
+        (*emotionPaths)[6] = "surprise";
+        for (std::map<int, std::string>::iterator iter = emotionPaths->begin(); iter != emotionPaths->end(); ++iter)
+        {
+            iter->second = "-"+iter->second;
+        }
+    }
+    if (characterPaths == nullptr)
+    {
+        characterPaths = new std::map<int, std::string>();
+        (*characterPaths)[1] = "Fire/fire";
+        (*characterPaths)[2] = "Water/water";
+        (*characterPaths)[3] = "Earth/earth";
+        (*characterPaths)[4] = "Air/air";
+        for (std::map<int, std::string>::iterator iter = characterPaths->begin(); iter != characterPaths->end(); ++iter)
+        {
+            iter->second = "./Assets/Images/Elementals/"+iter->second;
+        }
+    }
+}
+
+void STE::Dialogue::unload()
+{
+    if (emotions != nullptr)
+    {
+        emotions->clear();
+        delete emotions;
+        emotions = nullptr;
+    }
+    if (emotionPaths != nullptr)
+    {
+        emotionPaths->clear();
+        delete emotionPaths;
+        emotionPaths = nullptr;
+    }
+    if (characterPaths != nullptr)
+    {
+        characterPaths->clear();
+        delete characterPaths;
+        characterPaths = nullptr;
+    }
 }
 
 void STE::Dialogue::parse(const sf::Vector2f& region, State* state)
 {
     //std::cout << "BEGIN PARSE" << std::endl;
-    if (state == nullptr)
-    {
-        return;
-    }
     Question* question = nullptr;
     bool isQuestion = false;
     std::string line;
@@ -477,6 +588,25 @@ bool STE::Dialogue::select(Button* option)
     return false;
 }
 
+void STE::Dialogue::show(int character, int emotion)
+{
+    std::string characterPath = getCharacterPath(character);
+    std::string emotionPath = getEmotionPath(emotion);
+    if ((characterPath.empty()) || (emotionPath.empty()))
+    {
+        return;
+    }
+    sf::Vector2f region;
+    std::string path = characterPath+emotionPath+".png";
+    if (characterEmotion == nullptr)
+    {
+        characterEmotion = new sf::Sprite();
+    }
+    characterEmotion->setTexture(*loadTexture(path));
+    region = sf::Vector2f(characterEmotion->getTexture()->getSize());
+    characterEmotion->setOrigin(region.x*0.5f, region.y);
+}
+
 void STE::Dialogue::show(const std::vector<Statement*>& statements)
 {
     for (unsigned int i = 0; i != statements.size(); ++i)
@@ -499,6 +629,7 @@ void STE::Dialogue::show(Statement* statement)
     speech->setString(sf::String(statement->getContent()));
     region = speech->getGlobalBounds();
     speech->setOrigin(sf::Vector2f(region.width*0.5f, region.height*2.0f));
+    show(statement->getCharacter(), statement->getEmotion());
     std::cout << statement->getContent() << std::endl;
 }
 

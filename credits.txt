@@ -1,0 +1,20 @@
+
+Team:
+ * Pierce Brooks (www.linkedin.com/in/piercelbrooks)
+ * Amalie Brooks (www.linkedin.com/in/amalie-brooks)
+ * Vik Brooks (meroodles.tumblr.com)
+ * Jeff Busch (www.linkedin.com/in/jeffrey-busch)
+
+Work/Roles:
+ * Pierce:
+    * Programming
+    * Voice Acting
+ * Amalie:
+    * Dialogue Writing
+    * Voice Acting
+ * Vik:
+    * Character Art
+    * Background Art
+ * Jeff:
+    * Dialogue Writing
+    * Voice Acting

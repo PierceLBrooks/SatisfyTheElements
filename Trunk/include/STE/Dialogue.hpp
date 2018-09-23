@@ -4,6 +4,7 @@
 #ifndef STE_DIALOGUE_HPP
 #define STE_DIALOGUE_HPP
 
+#include <SFML/Graphics/Sprite.hpp>
 #include <STE/State.hpp>
 #include <fstream>
 #include <vector>
@@ -22,8 +23,10 @@ namespace STE
         void setScore(int score);
         int getScore() const;
         static int getEmotion(const std::string& identifier);
-        static void loadEmotions();
-        static void unloadEmotions();
+        static std::string getEmotionPath(int emotion);
+        static std::string getCharacterPath(int character);
+        static void load();
+        static void unload();
     private:
         class Element
         {
@@ -59,6 +62,7 @@ namespace STE
         };
         void parse(const sf::Vector2f& region, State* state);
         bool select(Button* option);
+        void show(int character, int emotion);
         void show(const std::vector<Statement*>& statements);
         void show(Statement* statement);
         void ask(Question* question);
@@ -68,10 +72,14 @@ namespace STE
         std::vector<Statement*> statements;
         std::map<Button*, std::vector<Statement*>> responses;
         std::ifstream* file;
+        sf::Sprite* background;
+        sf::Sprite* characterEmotion;
         sf::Text* speech;
         int score;
         unsigned int elementIndex;
         static std::map<std::string, int>* emotions;
+        static std::map<int, std::string>* emotionPaths;
+        static std::map<int, std::string>* characterPaths;
     };
 }
 

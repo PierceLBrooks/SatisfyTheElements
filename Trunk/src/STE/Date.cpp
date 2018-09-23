@@ -29,6 +29,7 @@ STE::Date::Date(sf::RenderWindow* window, int type) :
 STE::Date::~Date()
 {
     delete quit;
+    delete dialogue;
 }
 
 int STE::Date::update(sf::RenderWindow* window, float deltaTime)
@@ -37,6 +38,10 @@ int STE::Date::update(sf::RenderWindow* window, float deltaTime)
     {
         isQuit = false;
         return MENU_STATE_ID;
+    }
+    if (dialogue == nullptr)
+    {
+        return INVALID_STATE_ID;
     }
     if (dialogue->update(window, deltaTime) < 0)
     {
@@ -61,6 +66,15 @@ int STE::Date::update(sf::RenderWindow* window, float deltaTime)
                 }
                 dialogue->setScore(0);
                 return RESULT_STATE_ID;
+            }
+            else
+            {
+                if (dialogue->getScore() <= 0)
+                {
+                    Result::setIsWin(false);
+                    dialogue->setScore(0);
+                    return RESULT_STATE_ID;
+                }
             }
         }
     }

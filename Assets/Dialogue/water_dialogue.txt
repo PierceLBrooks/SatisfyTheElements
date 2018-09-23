@@ -5,7 +5,7 @@ I love this park, and the water's so peaceful.
 Have you been here before? 
 question
 Once, in college, when someone dared me to pee in every lake in the county in one night. | angry | -5 | I actually think I should just go.
-Yeah! My grandpa used to take me here when I was little. He loved fishing here. | smile | +1 | 
+Yeah! My grandpa used to take me here when I was little. He loved fishing here. | smile | +1 | Really? That sounds like so much fun!
 No, but I'm glad my first time seeing this beautiful place could be with you. | blushing | +2 | Me, too!
 
 I first came here when I was young. | happy
@@ -17,9 +17,9 @@ My mother ate my sister when she was young. | surprise | +0 | No way! I would ha
 grossed_out | Right out of the womb. Never seen anything like it.
 
 Well, anyhow, I've been reading the "Sisterhood of the Travelling Pants" books. Ever heard of them?
-I've really enjoyed the discussion domestic violence and the underlying themes of disease spreading through unwashed fabrics.
+I've really enjoyed the discussion of domestic violence and the underlying themes of disease spreading through unwashed fabrics.
 question
-No, haven't heard of them. The only book I've ever read is the original transcription of Ulysses, and let me just say, I'm better than you. | anger | -4 | I've never been so insulted in all my life. That doesn't even sounds like a real book! I think we're done here.
+No, haven't heard of them. The only book I've ever read is the original transcription of Ulysses, and let me just say, I'm better than you. | anger | -20 | I've never been so insulted in all my life. That doesn't even sounds like a real book! I think we're done here.
 Yes! I love those books! Uh ... I loved the part when ... uh ... when the girl wore the pants!! | smile | +1 | I, also, loved the part where the girl wore the pants. That one was my favorite.
 I also love socioeconomic commentary novels. | happy | +3 | How wonderful for you!
 
@@ -32,4 +32,11 @@ smile | Well, maybe we can still find something else in common.
 Reading quietly. | happy | +6 | Oh, that's great! I hope we can read together sometime!
 
 Maybe we can do something together next time we meet! | happy
-Well, it's getting late. Hey, it's been great meeting you! Hope we see eachother again soon. | smile
+I've always wanted to go on a camping trip. | smile
+question
+Yeah, me too! My family's always been really into camping. Maybe one day you can come with us! | happy | +5 | That sounds like so much fun!
+Ew, no way. Everything about camping is hell. | surprise | -3 | Uh, yeah, I guess so.
+Camping sounds like fun, but I don't think I could handle the bugs. | happy | +3 | Haha, me too! I always think it would be fun, then I remember that I would actually probably hate it.
+
+Well, it's getting late. | smile
+Hey, it's been great meeting you! Hope we see eachother again soon.
