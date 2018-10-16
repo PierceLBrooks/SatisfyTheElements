@@ -46,12 +46,12 @@ void STE::Result::start()
 {
     if (isWin)
     {
-        loadSound("./Assets/Sounds/Effects/mativve_electro-win-sound.wav")->play();
+        loadSound(getAssetsPath()+"Sounds/Effects/mativve_electro-win-sound.wav")->play();
         finish->setLabel("You won!");
     }
     else
     {
-        loadSound("./Assets/Sounds/Effects/taranp_horn-fail-wahwah-3.wav")->play();
+        loadSound(getAssetsPath()+"Sounds/Effects/taranp_horn-fail-wahwah-3.wav")->play();
         finish->setLabel("You lose!");
     }
 }

@@ -83,7 +83,7 @@ int STE::Button::update(sf::RenderWindow* window, float deltaTime)
         {
             if (form->getFillColor() == BUTTON_RELEASED_COLOR)
             {
-                loadSound("./Assets/Sounds/Effects/nenadsimic_menu-selection-click.wav")->play();
+                loadSound(getAssetsPath()+"Sounds/Effects/nenadsimic_menu-selection-click.wav")->play();
             }
             form->setFillColor(sf::Color(static_cast<sf::Uint8>((static_cast<float>(BUTTON_PRESSED_COLOR.r)+static_cast<float>(BUTTON_RELEASED_COLOR.r))*0.5f),
                                          static_cast<sf::Uint8>((static_cast<float>(BUTTON_PRESSED_COLOR.g)+static_cast<float>(BUTTON_RELEASED_COLOR.g))*0.5f),
@@ -152,7 +152,7 @@ void STE::Button::press()
 {
     if (!isPressed)
     {
-        loadSound("./Assets/Sounds/Effects/inspectorj_ui-confirmation-alert-a4.wav")->play();
+        loadSound(getAssetsPath()+"Sounds/Effects/inspectorj_ui-confirmation-alert-a4.wav")->play();
     }
     isPressed = true;
     if (listener != nullptr)

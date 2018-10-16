@@ -14,7 +14,7 @@ STE::CherryBlossoms::CherryBlossom::CherryBlossom(Random* random, float x, float
 {
     sf::Vector2f temp;
     sprite = new sf::Sprite();
-    sprite->setTexture(*loadTexture("./Assets/Images/CherryBlossoms.png"));
+    sprite->setTexture(*loadTexture(getAssetsPath()+"Images/CherryBlossoms.png"));
     temp = sf::Vector2f(sprite->getTexture()->getSize());
     sprite->setRotation(rotation+(random->getFloat(-PI, PI)*RAD_TO_DEG));
     sprite->setOrigin(temp*0.5f);

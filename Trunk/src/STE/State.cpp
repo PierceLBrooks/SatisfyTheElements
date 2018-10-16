@@ -11,7 +11,7 @@ STE::State::State(int id) :
     isReleased(false)
 {
     font = new sf::Font();
-    font->loadFromFile("./Assets/Fonts/Arial/arial.ttf");
+    font->loadFromFile(getAssetsPath()+"Fonts/Arial/arial.ttf");
 }
 
 STE::State::~State()

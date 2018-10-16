@@ -17,6 +17,39 @@
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
 
+void outputManifest(std::ifstream& manifest)
+{
+    std::string line;
+    while (std::getline(manifest, line).good())
+    {
+        std::cout << line << std::endl;
+    }
+}
+
+bool handleManifest()
+{
+    std::ifstream* manifest = new std::ifstream();
+    manifest->open(STE::getAssetsPath()+MANIFEST);
+    if (!manifest->is_open())
+    {
+        manifest->close();
+        delete manifest;
+        manifest = new std::ifstream();
+        STE::setAssetsPath("./../Assets/");
+        manifest->open(STE::getAssetsPath()+MANIFEST);
+        if (!manifest->is_open())
+        {
+            manifest->close();
+            delete manifest;
+            return false;
+        }
+    }
+    outputManifest(*manifest);
+    manifest->close();
+    delete manifest;
+    return true;
+}
+
 void load()
 {
     STE::Date::load();
@@ -48,6 +81,12 @@ int handleState(sf::RenderWindow* window, float deltaTime, int state, std::map<i
 
 int main()
 {
+    STE::setAssetsPath("./Assets/");
+    if (!handleManifest())
+    {
+        std::cout << "Failed to load manifest!" << std::endl;
+        return -2;
+    }
     unsigned int shadowFrames;
     float shadowFrameTime;
     float deltaTime;
@@ -75,8 +114,9 @@ int main()
     states[AIR_STATE_ID] = new STE::Date(window, AIR_STATE_ID);
     states[RESULT_STATE_ID] = new STE::Result(window, RESULT_STATE_ID);
     clock->restart();
-    if (!font->loadFromFile("./Assets/Fonts/Arial/arial.ttf"))
+    if (!font->loadFromFile(STE::getAssetsPath()+"Fonts/Arial/arial.ttf"))
     {
+        std::cout << "Failed to load font!" << std::endl;
         delete clock;
         delete font;
         delete fps;

@@ -8,7 +8,6 @@ The primary dependency is SFML (https://www.sfml-dev.org/).
 This is a dating simulator game. The jam's theme was "Satisfying Elements". We decided to interpret that guideline quite literally.
 Here is a little tagline: "Satisfy The Elements is about helping some romantically distraught elementals find their way to love through the dating service you work for!"
 We only built this for a Windows 10 machine. It should theoretically work on most other modern platforms, though. There is an example build included from our active environment (/Distrib/).
-If you are not building the project for yourself, all you need to do to get it to work once you clone the repository is copy the /Assets/ directory into the /Distrib/ directory so that the executable can find everything correctly.
 
 Tools we used:
 https://sourceforge.net/projects/mingw-w64/
