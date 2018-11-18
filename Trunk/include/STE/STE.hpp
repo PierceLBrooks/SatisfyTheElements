@@ -6,6 +6,8 @@
 #ifndef STE_HPP
 #define STE_HPP
 
+#include <string>
+
 #define DEFAULT_SCORE (5)
 #define DEFAULT_VOLUME (25.0f)
 #define FPS_LIMIT (60)
@@ -39,5 +41,22 @@
 #define DEFAULT_TEXT_COLOR (sf::Color::White)
 #define TEXT_OUTLINE_THICKNESS (0.125f)
 #define MAX_LINE_LENGTH (80)
+
+#define MANIFEST "manifest.txt"
+
+namespace STE
+{
+    class SatisfyTheElements
+    {
+    public:
+        static const std::string& getAssetsPath();
+        static void setAssetsPath(const std::string& path);
+    private:
+        static std::string assetsPath;
+    };
+
+    const std::string& getAssetsPath();
+    void setAssetsPath(const std::string& path);
+}
 
 #endif // STE_HPP

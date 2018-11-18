@@ -21,7 +21,7 @@ STE::Date::Date(sf::RenderWindow* window, int type) :
     }
     else
     {
-        dialogue = new Dialogue(window, "./Assets/Dialogue/"+date, this);
+        dialogue = new Dialogue(window, getAssetsPath()+"Dialogue/"+date, this);
     }
     quit = new Button(region*BUTTON_SCALE, "Quit", getFont(), DEFAULT_TEXT_COLOR, false);
     quit->setListener(this);
@@ -29,16 +29,16 @@ STE::Date::Date(sf::RenderWindow* window, int type) :
     switch (type)
     {
     case FIRE_STATE_ID:
-        music->openFromFile("./Assets/Sounds/Music/Steppin_Out.ogg");
+        music->openFromFile(getAssetsPath()+"Sounds/Music/Steppin_Out.ogg");
         break;
     case WATER_STATE_ID:
-        music->openFromFile("./Assets/Sounds/Music/Danosongs_-_Great_World_-_Acoustic_Rock_Mix.ogg");
+        music->openFromFile(getAssetsPath()+"Sounds/Music/Danosongs_-_Great_World_-_Acoustic_Rock_Mix.ogg");
         break;
     case EARTH_STATE_ID:
-        music->openFromFile("./Assets/Sounds/Music/Danosongs_-_West_in_the_Shadows.ogg");
+        music->openFromFile(getAssetsPath()+"Sounds/Music/Danosongs_-_West_in_the_Shadows.ogg");
         break;
     case AIR_STATE_ID:
-        music->openFromFile("./Assets/Sounds/Music/Danosongs_-_Copper_Mountain.ogg");
+        music->openFromFile(getAssetsPath()+"Sounds/Music/Danosongs_-_Copper_Mountain.ogg");
         break;
     default:
         delete music;

@@ -155,7 +155,7 @@ STE::Dialogue::Dialogue(sf::RenderWindow* window, const std::string& path, State
     else
     {
         background = new sf::Sprite();
-        background->setTexture(*loadTexture("./Assets/Images/Backgrounds/"+backgroundPath+".png"));
+        background->setTexture(*loadTexture(getAssetsPath()+"Images/Backgrounds/"+backgroundPath+".png"));
         background->setOrigin(sf::Vector2f(background->getTexture()->getSize())*0.5f);
     }
 }
@@ -349,7 +349,7 @@ void STE::Dialogue::load()
         (*characterPaths)[4] = "Air/air";
         for (std::map<int, std::string>::iterator iter = characterPaths->begin(); iter != characterPaths->end(); ++iter)
         {
-            iter->second = "./Assets/Images/Elementals/"+iter->second;
+            iter->second = getAssetsPath()+"Images/Elementals/"+iter->second;
         }
     }
 }
@@ -687,7 +687,7 @@ void STE::Dialogue::show(Statement* statement)
     region = speech->getGlobalBounds();
     speech->setOrigin(sf::Vector2f(region.width*0.5f, region.height*2.0f));
     show(statement->getCharacter(), statement->getEmotion());
-    loadSound("./Assets/Sounds/Effects/nenadsimic_menu-selection-click.wav")->play();
+    loadSound(getAssetsPath()+"Sounds/Effects/nenadsimic_menu-selection-click.wav")->play();
     std::cout << statement->getContent() << std::endl;
 }
 

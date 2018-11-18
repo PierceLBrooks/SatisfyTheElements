@@ -9,7 +9,6 @@ set(SRC ${PROJECT_SOURCE_DIR}/src/STE)
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
 set(PROJECT_FILES
-	${INC}/STE.hpp
 	${SRC}/main.cpp
 	${SRC}/CherryBlossoms.cpp
 	${SRC}/Menu.cpp
@@ -22,6 +21,7 @@ set(PROJECT_FILES
 	${SRC}/ClientSelection.cpp
 	${SRC}/Dialogue.cpp
 	${SRC}/Result.cpp
+	${SRC}/STE.cpp
 	${INC}/CherryBlossoms.hpp
 	${INC}/Menu.hpp
 	${INC}/State.hpp
@@ -33,6 +33,7 @@ set(PROJECT_FILES
 	${INC}/ClientSelection.hpp
 	${INC}/Dialogue.hpp
 	${INC}/Result.hpp
+	${INC}/STE.hpp
 )
 
 add_executable(SatisfyTheElements ${PROJECT_FILES})
