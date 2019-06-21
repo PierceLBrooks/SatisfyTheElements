@@ -3,7 +3,7 @@
 
 #include <STE/STE.hpp>
 #include <STE/Button.hpp>
-#include <SFML/WIndow/Mouse.hpp>
+#include <SFML/Window/Mouse.hpp>
 
 STE::Button::Listener::Listener()
 {
